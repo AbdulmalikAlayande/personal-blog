@@ -1,7 +1,6 @@
 import React from 'react'
-import { AiFillAppstore } from "react-icons/ai";
-import { FaMobile, FaGlobe } from "react-icons/fa";
-import { SiProgress, SiAntdesign } from "react-icons/si";
+import { FaCode, FaDev, FaBook } from "react-icons/fa";
+import {SiAntdesign} from "react-icons/si";
 import Title from '../layouts/Title';
 import Card from './Card';
 
@@ -14,40 +13,28 @@ const Features = () => {
       <Title title="Features" des="What I Do" />
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-20">
         <Card
-          title="Business Stratagy"
+          title="Backend Development"
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta
           hic consequuntur eum repellendus ad."
-         
+          icon={<FaDev />}
         />
         <Card
-          title="App Development"
+          title="Frontend Development"
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta
           hic consequuntur eum repellendus ad."
-          icon={<AiFillAppstore />}
+          icon={<FaCode />}
         />
         <Card
-          title="SEO Optimisation"
+          title="Technical Writing"
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta
           hic consequuntur eum repellendus ad."
-          icon={<SiProgress />}
+          icon={<FaBook />}
         />
         <Card
-          title="Mobile Development"
-          des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta
-          hic consequuntur eum repellendus ad."
-          icon={<FaMobile />}
-        />
-        <Card
-          title="UX Design"
+          title="System Design"
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta
           hic consequuntur eum repellendus ad."
           icon={<SiAntdesign />}
-        />
-        <Card
-          title="Hosting Websites"
-          des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta
-          hic consequuntur eum repellendus ad."
-          icon={<FaGlobe />}
         />
       </div>
     </section>
