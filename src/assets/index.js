@@ -1,7 +1,5 @@
 import logo from "./images/logo.png";
 import bannerImg from "./images/bannerImg.png";
-import projectOne from "./images/projects/projectOne.jpg";
-import projectTwo from "./images/projects/projectTwo.jpg";
 import ars1 from "./images/projects/ars-1.jpg";
 import ars2 from "./images/projects/ars-2.png";
 import ars3 from "./images/projects/ars-3.webp"
@@ -20,7 +18,6 @@ import interoperability from "./images/projects/interoperability-1.webp";
 import store1 from "./images/projects/store-1.png";
 import store2 from "./images/projects/store-2.svg";
 import store3 from "./images/projects/store-3.png";
-import projectThree from "./images/projects/projectThree.jpeg";
 import testimonialOne from "./images/testmonial/testimonialOne.png";
 import testimonialTwo from "./images/testmonial/testimonialTwo.png";
 import quote from "./images/testmonial/quote.png";
@@ -47,9 +44,6 @@ export {
     store1,
     store2,
     store3,
-    projectOne,
-    projectTwo,
-    projectThree,
     testimonialOne,
     testimonialTwo,
     quote,

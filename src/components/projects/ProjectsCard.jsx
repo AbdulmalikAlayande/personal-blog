@@ -1,10 +1,8 @@
 import React from 'react'
-import { BsGithub } from "react-icons/bs";
-import { FaGlobe } from "react-icons/fa";
 import ImageDynamicDisplay from "./ImageDynamicDisplay";
 import PropTypes, {object} from "prop-types";
 
-const ProjectsCard = ({ title, des, images, siteUrl, githubUrl }) => {
+const ProjectsCard = ({ title, des, images, siteUrl, githubUrls, icons }) => {
     return (
         <div
             className="w-full p-4 xl:px-12 h-auto xl:py-10 rounded-lg shadow-shadowOne flex flex-col bg-gradient-to-r from-bodyColor to-[#202327] group hover:bg-gradient-to-b hover:from-gray-900 hover:gray-900 transition-colors duration-1000">
@@ -18,16 +16,14 @@ const ProjectsCard = ({ title, des, images, siteUrl, githubUrl }) => {
                             {title}
                         </h3>
                         <div className="flex gap-2">
-                            <a href={githubUrl}>
-                                <span className="text-lg w-10 h-10 rounded-full bg-black inline-flex justify-center items-center text-gray-400 hover:text-designColor duration-300 cursor-pointer">
-                                    <BsGithub/>
-                                </span>
-                            </a>
-                            <a href={siteUrl}>
-                                <span className="text-lg w-10 h-10 rounded-full bg-black inline-flex justify-center items-center text-gray-400 hover:text-designColor duration-300 cursor-pointer">
-                                    <FaGlobe/>
-                                </span>
-                            </a>
+                            {icons.map((icon, index)=> (
+                                <a href={githubUrls[index]}>
+                                    <span
+                                        className="text-lg w-10 h-10 rounded-full bg-black inline-flex justify-center items-center text-gray-400 hover:text-designColor duration-300 cursor-pointer">
+                                        {icon}
+                                    </span>
+                                </a>
+                            ))}
                         </div>
                     </div>
                     <p className="text-sm tracking-wide mt-3 hover:text-gray-100 duration-300">
@@ -44,7 +40,9 @@ ProjectsCard.propTypes = {
     des: PropTypes.string.isRequired,
     images: PropTypes.arrayOf(object).isRequired,
     siteUrl: PropTypes.string,
-    githubUrl: PropTypes.string,
+    githubUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+    githubUrl2: PropTypes.string,
+    icons: PropTypes.arrayOf(PropTypes.elementType).isRequired
 }
 
 export default ProjectsCard

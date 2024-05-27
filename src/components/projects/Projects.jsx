@@ -1,7 +1,6 @@
 import React from 'react'
 import Title from '../layouts/Title'
 import {
-    projectOne,
     ars1, ars2, ars3,
     dating1, dating2, dating3,
     blog1, blog2, blog3,
@@ -10,6 +9,8 @@ import {
     store1, store2, store3,
 } from "../../assets/index";
 import ProjectsCard from './ProjectsCard';
+import { BsGithub } from "react-icons/bs";
+import { FaGlobe } from "react-icons/fa";
 
 const Projects = () => {
   return (
@@ -31,6 +32,8 @@ const Projects = () => {
           The system enhances care coordination and efficiency by enabling seamless
           information sharing among healthcare providers, laboratories, and medical facilities"
           images={[ehr1, ehr2, interoperability]}
+          githubUrls={["https://github.com/e-Reach/e-Reach-frontend.git", ""]}
+          icons={[<BsGithub/>, <BsGithub/>]}
         />
         <ProjectsCard
           title="LEARNING MANAGEMENT SYSTEM (LMS)"
@@ -39,6 +42,8 @@ const Projects = () => {
           By emphasizing skills development and entrepreneurship, the project aimed to empower youth
           to contribute meaningfully to the economy and society."
           images={[lms1, lms2, lms3]}
+          githubUrls={["https://github.com/Thrivefuse/thrivefuse-backend.git", "https://github.com/Thrivefuse/Thrivefuse.git"]}
+          icons={[<BsGithub/>, <BsGithub/>]}
         />
         <ProjectsCard
           title="A BLOGGING WEBSITE"
@@ -47,6 +52,8 @@ const Projects = () => {
           Readers can explore the blog, leave comments, and engage with the community. Essentially,
           it serves as a platform for expressing ideas, and discovering interesting content"
           images={[blog1, blog2, blog3]}
+          githubUrls={["https://github.com/AbdulmalikAlayande/bloggy.git"]}
+          icons={[<BsGithub/>]}
         />
         <ProjectsCard
           title="ONLINE STORE"
@@ -54,6 +61,8 @@ const Projects = () => {
           and purchase products remotely. It provides a convenient platform for users to explore a wide
           range of items, make purchases securely, and track orders seamlessly."
           images={[store1, store2, store3]}
+          githubUrls={["https://github.com/AbdulmalikAlayande/snap-shop.git"]}
+          icons={[<BsGithub/>]}
         />
         <ProjectsCard
           title="Dating App"
@@ -61,6 +70,8 @@ const Projects = () => {
           The app includes features such as profile creation, photo uploads, messaging,
           and algorithm-based matching to connect users based on their preferences and interests."
           images={[dating1, dating2, dating3]}
+          githubUrls={["https://github.com/AbdulmalikAlayande/promiscuous.git"]}
+          icons={[<BsGithub/>]}
         />
         <ProjectsCard
           title="AIRLINE RESERVATION SYSTEM"
@@ -68,7 +79,8 @@ const Projects = () => {
           create itineraries, manage reservations, and check flight availability. With a focus on
           simplicity and user satisfaction, this application streamlines the travel experience for customers."
           images={[ars1, ars2, ars3]}
-        />
+          githubUrls={["https://github.com/AbdulmalikAlayande/bola-air-backend.git", "https://github.com/AbdulmalikAlayande/bola-air-frontend.git"]}
+          icons={[<BsGithub/>, <BsGithub/>]}/>
       </div>
     </section>
   );
