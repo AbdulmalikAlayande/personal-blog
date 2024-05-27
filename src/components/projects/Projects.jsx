@@ -32,7 +32,7 @@ const Projects = () => {
           The system enhances care coordination and efficiency by enabling seamless
           information sharing among healthcare providers, laboratories, and medical facilities"
           images={[ehr1, ehr2, interoperability]}
-          githubUrls={["https://github.com/e-Reach/e-Reach-frontend.git", ""]}
+          githubUrls={["https://github.com/AbdulmalikAlayande/e-Reach-frontend.git", "https://github.com/AbdulmalikAlayande/e-Reach-backend.git"]}
           icons={[<BsGithub/>, <BsGithub/>]}
         />
         <ProjectsCard

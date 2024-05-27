@@ -1,5 +1,5 @@
-import logo from "./images/logo.png";
-import bannerImg from "./images/bannerImg.png";
+import logo from "./images/icon-3.png";
+import bannerImg from "./images/banner.png";
 import ars1 from "./images/projects/ars-1.jpg";
 import ars2 from "./images/projects/ars-2.png";
 import ars3 from "./images/projects/ars-3.webp"
