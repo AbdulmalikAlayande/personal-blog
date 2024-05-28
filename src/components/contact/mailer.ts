@@ -19,7 +19,7 @@ export function sendMail(user){
     
     const config: AxiosRequestConfig = {
         headers: {
-            "api-key": "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",
+            "api-key": process.env.REACT_APP_BREVO_API_KEY,
             "content-type": "application/json",
             "accept": "application/json",
         },
