@@ -9,13 +9,13 @@ const Footer = () => {
         <img className="w-32" src={icon4} alt="logo" />
         <div className="flex gap-4">
           <span className="bannerIcon">
-            <FaFacebookF />
+            <FaFacebookF  size={30}/>
           </span>
           <span className="bannerIcon">
-            <FaTwitter />
+            <FaTwitter  size={30}/>
           </span>
           <span className="bannerIcon">
-            <FaLinkedinIn />
+            <FaLinkedinIn  size={30}/>
           </span>
         </div>
       </div>
