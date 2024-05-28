@@ -10,7 +10,7 @@ import {
 } from "../../assets/index";
 import ProjectsCard from './ProjectsCard';
 import { BsGithub } from "react-icons/bs";
-import { FaGlobe } from "react-icons/fa";
+// import { FaGlobe } from "react-icons/fa";
 
 const Projects = () => {
   return (

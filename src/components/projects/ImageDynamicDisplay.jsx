@@ -18,7 +18,7 @@ function ImageDynamicDisplay({images, interval=3000}) {
     return (
         <img
             src={images[currentImageIndex]}
-            alt={`Image ${currentImageIndex + 1}`}
+            alt={`Pic ${currentImageIndex + 1}`}
             className={"w-full h-60 object-cover group-hover:scale-110 duration-300 cursor-pointer"}
         />
     );

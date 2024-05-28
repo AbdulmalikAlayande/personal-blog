@@ -13,7 +13,7 @@ import TextTitle from "../layouts/TextTitle";
 const Tools = () => {
 
     return (
-        <section id="features" className="w-full py-20 border-b-[1px] border-b-black">
+        <section id="tools" className="w-full py-20 border-b-[1px] border-b-black">
             <Title title="Tools" des="Tools and Technologies I Use" />
             <section className={"gap-10 mb-8"}>
                 <TextTitle title={"Languages And Frameworks"}/>
