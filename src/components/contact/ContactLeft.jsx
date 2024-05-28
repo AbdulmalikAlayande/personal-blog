@@ -35,44 +35,44 @@ const ContactLeft = () => {
             <div className="flex gap-4">
                 <a href="https://wa.me/+2347036174617" target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <FaWhatsapp/>
+                        <FaWhatsapp size={30}/>
                     </span>
                 </a>
                 <a href="https://t.me/+2347036174617" target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <FaTelegram/>
+                        <FaTelegram size={30}/>
                     </span>
                 </a>
                 <a href={"mailto:alaabdulmalik03@gmail.com"} target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <SiGmail/>
+                        <SiGmail size={30}/>
                     </span>
                 </a>
                 <a href={"https://discord.com/"} title="abdulmalik03" target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <FaDiscord/>
+                        <FaDiscord size={30}/>
                     </span>
                 </a>
             </div>
             <div className={"flex gap-4"}>
                 <a href={"https://web.facebook.com/abdulmalik.alayande.39"} target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <FaFacebookF/>
+                        <FaFacebookF size={30}/>
                     </span>
                 </a>
                 <a href={"https://x.com/The_good_man02"} target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <FaTwitter/>
+                        <FaTwitter size={30}/>
                     </span>
                 </a>
                 <a href={"https://www.linkedin.com/in/abdulmalik-alayande-b49814250/"} target={"_blank"}  rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <FaLinkedinIn/>
+                        <FaLinkedinIn size={30}/>
                     </span>
                 </a>
                 <a href={"https://www.reddit.com/user/bolaballer/"} target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
-                        <SiReddit/>
+                        <SiReddit size={30}/>
                     </span>
                 </a>
             </div>

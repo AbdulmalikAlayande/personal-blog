@@ -49,32 +49,32 @@ const LeftBanner = () => {
                     <div className="flex gap-4">
                         <a href={"https://github.com/AbdulmalikAlayande/"}>
                             <span className="bannerIcon">
-                                <FaGithub/>
+                                <FaGithub size={30}/>
                             </span>
                         </a>
                         <a href={"https://web.facebook.com/abdulmalik.alayande.39"}>
                             <span className="bannerIcon">
-                                <FaFacebookF/>
+                                <FaFacebookF size={30}/>
                             </span>
                         </a>
                         <a href={"https://x.com/The_good_man02"}>
                             <span className="bannerIcon">
-                                <FaTwitter/>
+                                <FaTwitter size={30}/>
                             </span>
                         </a>
                         <a href={"https://www.linkedin.com/in/abdulmalik-alayande-b49814250/"}>
                             <span className="bannerIcon">
-                                <FaLinkedinIn/>
+                                <FaLinkedinIn size={30}/>
                             </span>
                         </a>
                         <a href={"https://www.instagram.com/blaq_mhee/"}>
                             <span className="bannerIcon">
-                                <FaInstagram/>
+                                <FaInstagram size={30}/>
                             </span>
                         </a>
                         <a href={"https://medium.com/@alaabdulmalik03"}>
                             <span className="bannerIcon">
-                                <FaMedium/>
+                                <FaMedium size={30}/>
                             </span>
                         </a>
                 </div>
