@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import Title from '../layouts/Title';
 import ContactLeft from './ContactLeft';
-import {sendMail} from "./mailer"
+import {sendMail} from "./mailer.ts"
 
 const initialData = {
   name: "",
@@ -21,9 +21,7 @@ const Contact = () => {
     const [successMsg, setSuccessMsg] = useState("");
 
     const emailValidation = () => {
-    return String(email)
-      .toLocaleLowerCase()
-      .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
+        return String(email).toLocaleLowerCase().match(/^\w+(-?\w+)*@\w+(-?\w+)*(\.\w{2,3})+$/);
     };
     function verifyDetails(event) {
         event.preventDefault();
@@ -36,7 +34,7 @@ const Contact = () => {
         } else if (!emailValidation(email)) {
           setErrMsg("Give a valid Email!");
         } else if (subject === "") {
-          setErrMsg("Plese give your Subject!");
+          setErrMsg("Please give your Subject!");
         } else if (message === "") {
           setErrMsg("Message is required!");
         } else {
@@ -63,8 +61,10 @@ const Contact = () => {
   const handleSend = (event) => {
     verifyDetails(event);
     sendMail(userData).then((response)=>{
-        setSuccessMsg(response.data.body)
+        console.log(response.data)
+        setSuccessMsg(response.data)
     }).catch((error)=>{
+        console.log(error)
         setErrMsg(error.message)
     })
   };
@@ -143,7 +143,7 @@ const Contact = () => {
                   onChange={handleChange}
                   name={subject}
                   className={`${
-                    errMsg === "Plese give your Subject!" &&
+                    errMsg === "Please give your Subject!" &&
                     "outline-designColor"
                   } contactInput`}
                   type="text"
