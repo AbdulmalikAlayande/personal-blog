@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import {FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMedium} from "react-icons/fa";
+import {FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMedium, FaGithub} from "react-icons/fa";
 
 const LeftBanner = () => {
     const [text] = useTypewriter({
@@ -47,6 +47,11 @@ const LeftBanner = () => {
                       Find me on
                     </h2>
                     <div className="flex gap-4">
+                        <a href={"https://github.com/AbdulmalikAlayande/"}>
+                            <span className="bannerIcon">
+                                <FaGithub/>
+                            </span>
+                        </a>
                         <a href={"https://web.facebook.com/abdulmalik.alayande.39"}>
                             <span className="bannerIcon">
                                 <FaFacebookF/>
