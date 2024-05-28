@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ResumeCard from "./ResumeCard";
 import {AchievementCard} from "./achievementCard";
 
 const Achievement = () => {

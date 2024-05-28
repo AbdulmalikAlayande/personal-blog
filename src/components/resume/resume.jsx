@@ -1,9 +1,9 @@
 import React, {  useState } from 'react'
 import Title from '../layouts/Title';
-import Education from './Education';
-import Skills from './Skills';
-import Achievement from './Achievement';
-import Experience from "./Experience"
+import Education from './education';
+import Skills from './skills';
+import Achievement from './achievement';
+import Experience from "./experience"
 
 const Resume = () => {
    const [educationData, setEducationData] = useState(true);

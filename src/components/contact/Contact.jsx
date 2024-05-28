@@ -1,49 +1,72 @@
 import React,{useState} from 'react'
 import Title from '../layouts/Title';
 import ContactLeft from './ContactLeft';
+import {sendMail} from "./mailer"
 
+const initialData = {
+  name: "",
+  phoneNumber: "",
+  email: "",
+  subject: "",
+  message: "",
+}
 const Contact = () => {
-  const [username, setUsername] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
+    const [username, setUsername] = useState("");
+    const [userData, setUserData] = useState(initialData);
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+    const [errMsg, setErrMsg] = useState("");
+    const [successMsg, setSuccessMsg] = useState("");
 
-  // ========== Email Validation start here ==============
-  const emailValidation = () => {
+    const emailValidation = () => {
     return String(email)
       .toLocaleLowerCase()
       .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
-  };
-  // ========== Email Validation end here ================
-
-  const handleSend = (e) => {
-    e.preventDefault();
-    if (username === "") {
-      setErrMsg("Username is required!");
-    } else if (phoneNumber === "") {
-      setErrMsg("Phone number is required!");
-    } else if (email === "") {
-      setErrMsg("Please give your Email!");
-    } else if (!emailValidation(email)) {
-      setErrMsg("Give a valid Email!");
-    } else if (subject === "") {
-      setErrMsg("Plese give your Subject!");
-    } else if (message === "") {
-      setErrMsg("Message is required!");
-    } else {
-      setSuccessMsg(
-        `Thank you dear ${username}, Your Messages has been sent Successfully!`
-      );
-      setErrMsg("");
-      setUsername("");
-      setPhoneNumber("");
-      setEmail("");
-      setSubject("");
-      setMessage("");
+    };
+    function verifyDetails(event) {
+        event.preventDefault();
+        if (username === "") {
+          setErrMsg("Username is required!");
+        } else if (phoneNumber === "") {
+          setErrMsg("Phone number is required!");
+        } else if (email === "") {
+          setErrMsg("Please give your Email!");
+        } else if (!emailValidation(email)) {
+          setErrMsg("Give a valid Email!");
+        } else if (subject === "") {
+          setErrMsg("Plese give your Subject!");
+        } else if (message === "") {
+          setErrMsg("Message is required!");
+        } else {
+          setSuccessMsg(
+              `Thank you dear ${username}, Your Messages has been sent Successfully!`
+          );
+          setErrMsg("");
+          setUsername("");
+          setPhoneNumber("");
+          setEmail("");
+          setSubject("");
+          setMessage("");
+        }
     }
+
+    function handleChange(event){
+        event.preventDefault();
+        setUserData((initSate)=>({
+            ...initSate,
+            [event.target.name]: event.target.value
+        }))
+    }
+
+  const handleSend = (event) => {
+    verifyDetails(event);
+    sendMail(userData).then((response)=>{
+        setSuccessMsg(response.data.body)
+    }).catch((error)=>{
+        setErrMsg(error.message)
+    })
   };
   return (
     <section
@@ -74,8 +97,8 @@ const Contact = () => {
                     Your name
                   </p>
                   <input
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
+                    onChange={handleChange}
+                    name={username}
                     className={`${
                       errMsg === "Username is required!" &&
                       "outline-designColor"
@@ -88,8 +111,8 @@ const Contact = () => {
                     Phone Number
                   </p>
                   <input
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    value={phoneNumber}
+                    onChange={handleChange}
+                    name={phoneNumber}
                     className={`${
                       errMsg === "Phone number is required!" &&
                       "outline-designColor"
@@ -103,8 +126,8 @@ const Contact = () => {
                   Email
                 </p>
                 <input
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
+                  onChange={handleChange}
+                  name={email}
                   className={`${
                     errMsg === "Please give your Email!" &&
                     "outline-designColor"
@@ -117,8 +140,8 @@ const Contact = () => {
                   Subject
                 </p>
                 <input
-                  onChange={(e) => setSubject(e.target.value)}
-                  value={subject}
+                  onChange={handleChange}
+                  name={subject}
                   className={`${
                     errMsg === "Plese give your Subject!" &&
                     "outline-designColor"
@@ -131,8 +154,8 @@ const Contact = () => {
                   Message
                 </p>
                 <textarea
-                  onChange={(e) => setMessage(e.target.value)}
-                  value={message}
+                  onChange={handleChange}
+                  name={message}
                   className={`${
                     errMsg === "Message is required!" && "outline-designColor"
                   } contactTextArea`}
