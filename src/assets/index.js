@@ -1,4 +1,5 @@
 import logo from "./images/icon-3.png";
+import icon4 from "./images/icon-4.png";
 import bannerImg from "./images/banner.png";
 import ars1 from "./images/projects/ars-1.jpg";
 import ars2 from "./images/projects/ars-2.png";
@@ -25,6 +26,7 @@ import contactImg from "./images/contact/contactImg.png";
 
 export {
     logo,
+    icon4,
     bannerImg,
     ars1,
     ars2,
