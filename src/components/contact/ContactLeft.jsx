@@ -17,8 +17,11 @@ const ContactLeft = () => {
           Software Engineer
         </p>
         <p className="text-base text-gray-400 tracking-wide">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis
-          ipsam autem cumque, accusantium dicta odio.
+            I am always open to new opportunities, whether it be for a full-time role,
+            freelance project, or collaboration. If you are looking to hire a dedicated software engineer,
+            have an exciting project in mind, or simply want to connect, feel free to reach out.
+            I look forward to the possibility of working together and making impactful contributions
+            to your team or project.
         </p>
         <p className="text-base text-gray-400 flex items-center gap-2">
           Phone: <span className="text-lightText">+2347036174617</span>
