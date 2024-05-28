@@ -3,12 +3,12 @@ import Title from '../layouts/Title';
 import Education from './education';
 import Skills from './skills';
 import Achievement from './achievement';
-import Experience from "./experience"
+// import Experience from "./experience"
 
 const Resume = () => {
    const [educationData, setEducationData] = useState(true);
    const [skillData, setSkillData] = useState(false);
-   const [experienceData, setExperienceData] = useState(false);
+   // const [experienceData, setExperienceData] = useState(false);
    const [achievementData, setAchievementData] = useState(false);
   return (
     <section id="resume" className="w-full py-20 border-b-[1px] border-b-black">
@@ -21,7 +21,7 @@ const Resume = () => {
             onClick={() =>
               setEducationData(true) &
               setSkillData(false) &
-              setExperienceData(false) &
+              // setExperienceData(false) &
               setAchievementData(false)
             }
             className={`${
@@ -36,7 +36,7 @@ const Resume = () => {
             onClick={() =>
               setEducationData(false) &
               setSkillData(true) &
-              setExperienceData(false) &
+              // setExperienceData(false) &
               setAchievementData(false)
             }
             className={`${
@@ -64,7 +64,7 @@ const Resume = () => {
             onClick={() =>
               setEducationData(false) &
               setSkillData(false) &
-              setExperienceData(false) &
+              // setExperienceData(false) &
               setAchievementData(true)
             }
             className={`${

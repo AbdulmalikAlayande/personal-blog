@@ -45,7 +45,7 @@ const ContactLeft = () => {
                         <SiGmail/>
                     </span>
                 </a>
-                <a href="" title="abdulmalik03" target={"_blank"} rel={"noopener noreferrer"}>
+                <a href={"https://discord.com/"} title="abdulmalik03" target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
                         <FaDiscord/>
                     </span>
