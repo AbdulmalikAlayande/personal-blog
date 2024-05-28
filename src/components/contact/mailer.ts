@@ -25,7 +25,6 @@ export function sendMail(user){
         },
         
     }
-    console.log("url ==> ", process.env.REACT_APP_BREVO_MAIL_URL)
     console.log("api key ==> ", process.env.REACT_APP_BREVO_API_KEY)
     return axios.post("https://api.brevo.com/v3/smtp/email", userData, config)
 }

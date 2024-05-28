@@ -52,8 +52,7 @@ const ContactLeft = () => {
                 </a>
             </div>
             <div className={"flex gap-4"}>
-                <a href={"https://web.facebook.com/abdulmalik.alayande.39"} target={"_blank"}
-                   rel={"noopener noreferrer"}>
+                <a href={"https://web.facebook.com/abdulmalik.alayande.39"} target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
                         <FaFacebookF/>
                     </span>
@@ -63,8 +62,7 @@ const ContactLeft = () => {
                         <FaTwitter/>
                     </span>
                 </a>
-                <a href={"https://www.linkedin.com/in/abdulmalik-alayande-b49814250/"} target={"_blank"}
-                   rel={"noopener noreferrer"}>
+                <a href={"https://www.linkedin.com/in/abdulmalik-alayande-b49814250/"} target={"_blank"} rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
                         <FaLinkedinIn/>
                     </span>
