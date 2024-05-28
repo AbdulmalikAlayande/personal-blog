@@ -62,7 +62,7 @@ const ContactLeft = () => {
                         <FaTwitter/>
                     </span>
                 </a>
-                <a href={"https://www.linkedin.com/in/abdulmalik-alayande-b49814250/"} target={"_blank"} rel={"noopener noreferrer"}>
+                <a href={"https://www.linkedin.com/in/abdulmalik-alayande-b49814250/"} target={"_blank"}  rel={"noopener noreferrer"}>
                     <span className="bannerIcon">
                         <FaLinkedinIn/>
                     </span>
