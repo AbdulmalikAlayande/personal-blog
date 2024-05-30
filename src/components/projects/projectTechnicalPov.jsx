@@ -16,14 +16,20 @@ const ProjectTechnicalPov = (project) => {
                     <p>Languages And Framework</p>
                     <ul>
                         {
-                            project.technologies.frontend.languagesAndFrameworks.map((lang, index)=>({
-
-                            }))
+                            project.technologies.frontend.languagesAndFrameworks.map((lang)=>(
+                                <li>
+                                    {lang}
+                                </li>
+                            ))
                         }
                     </ul>
                     <p>Database and Caching</p>
                     <ul>
-                        {}
+                        {
+                            project.technologies.frontend.databaseAndCache.map(data => (
+                                <li>{data}</li>
+                            ))
+                        }
                     </ul>
                     <p>Tools And Platform</p>
                     <ul>
