@@ -5,21 +5,21 @@ const ars = {
     },
     technologies: {
         frontend: {
-            languagesAndFramework: [],
+            languagesAndFramework: ["TypeScript", "React.js"],
             databaseAndCache: [],
-            cloudTools: []
+            cloudTools: ["Docker", "Vercel"]
         },
         backend: {
-            languagesAndFramework: [],
-            databaseAndCache: [],
-            cloudTools: []
+            languagesAndFramework: ["Java", "Springboot"],
+            databaseAndCache: ["MySQL", "Redis"],
+            cloudTools: ["Docker", "Heroku"]
         }
     },
     database: {
-        dbms: "",
+        dbms: "MySQL",
         reason: "",
         schemaDesign: "",
-        erd: "",
+        erd: "https://erd.jpg",
     },
     api: {
         endpoints: [
