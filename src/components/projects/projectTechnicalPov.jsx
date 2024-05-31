@@ -17,43 +17,50 @@ const ProjectTechnicalPov = ({project}) => {
                     {project.description.des}
                 </p>
             </section>
-            <section className={"w-full py-20 border-b-[1px] border-b-black"} id={"technologies used"}>
-                <a href={"#technologies-used"}>
-                    <TextTitle title={"Technologies Used"}/>
+            <section className={"flex flex-col h-[600px] justify-between w-full border-b-[1px] border-b-black"} id={"technologies used"}>
+                <a className={"text-3xl text-lightText"} href={"#technologies-used"}>
+                    <h3>Technologies Used</h3>
                 </a>
-                <section id={"Frontend"}>
-                    <p>Languages And Framework</p>
-                    <ul>
-                        {
-                            project.technologies.frontend.languagesAndFramework.map((lang)=>(
-                                <li>
-                                    {lang}
-                                </li>
-                            ))
-                        }
-                    </ul>
-                    <p>Database and Caching</p>
-                    <ul>
-                        {
-                            project.technologies.frontend.databaseAndCache.map(data => (
-                                <li>{data}</li>
-                            ))
-                        }
-                    </ul>
-                    <p>Tools And Platform</p>
-                    <ul>
-                        {
-                            project.technologies.frontend.cloudTools.map((tool)=>(
-                                <li>{tool}</li>
-                            ))
-                        }
-                    </ul>
+                <section className={"flex flex-col justify-between h-[40%]"} id={"Frontend"}>
+                    <h5 className={"text-designColor"}>Frontend</h5>
+                    <div>
+                        <p>Languages And Framework</p>
+                        <ol className={"list-disc flex flex-col items-center w-[20%] text-left"}>
+                            {
+                                project.technologies.frontend.languagesAndFramework.map((lang) => (
+                                    <li>
+                                        {lang}
+                                    </li>
+                                ))
+                            }
+                        </ol>
+                    </div>
+                    <div>
+                        <p>Database and Caching</p>
+                        <ol className={"list-disc flex flex-col items-center w-[20%] text-left"}>
+                            {
+                                project.technologies.frontend.databaseAndCache.map(data => (
+                                    <li>{data}</li>
+                                ))
+                            }
+                        </ol>
+                    </div>
+                    <div>
+                        <p>Tools And Platform</p>
+                        <ol className={"list-disc flex flex-col items-center w-[20%] text-left"}>
+                            {
+                                project.technologies.frontend.cloudTools.map((tool) => (
+                                    <li>{tool}</li>
+                                ))
+                            }
+                        </ol>
+                    </div>
                 </section>
-                <section id={"Backend"}>
+                <section className={"flex flex-col justify-between h-[40%]"} id={"Backend"}>
                     <p>Languages And Framework</p>
                     <ul>
                         {
-                            project.technologies.backend.languagesAndFramework.map((lang)=>(
+                            project.technologies.backend.languagesAndFramework.map((lang) => (
                                 <li>
                                     {lang}
                                 </li>
@@ -140,11 +147,10 @@ const ProjectTechnicalPov = ({project}) => {
                 </div>
                 <p>Test Coverage: {project.testing.testCoverage}</p>
             </section>
-            <section className={"w-full py-20 border-b-[1px] border-b-black"} id={"source code"}>
+            <section className={"w-full py-20 border-b-[1px] border-b-black"} id={"source-code"}>
                 <a href={"#source-code"}>
                     <TextTitle title={"Source Code"}/>
                 </a>
-                <TextTitle title={"Source Code"}/>
                 <p>Repository: <a href={project.sourceCode.repository}>GitHub Repo</a></p>
                 <p>Code Snippets</p>
             </section>
