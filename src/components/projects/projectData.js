@@ -375,7 +375,7 @@ export const projects = [
         id: "ons",
         description: {
             title: "Online Store App",
-            des: "An platform built using Python and Django that serves as a digital marketplace where users can browse, select, and purchase products remotely. It provides a convenient platform for users to explore a wide range of items, make purchases securely, and track orders seamlessly. providing a seamless online shopping experience. The application supports product browsing, secure payment processing, order tracking, and customer reviews."
+            des: "An platform built using Python and Django that serves as a digital marketplace where users can browse, select, and purchase products remotely. The application supports product browsing, secure payment processing, order tracking, and customer reviews."
         },
         features: [
             "User authentication and profile management",
