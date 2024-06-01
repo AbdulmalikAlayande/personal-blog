@@ -19,7 +19,7 @@ function ProjectDocumentation() {
             }
         }
         setProject(getProject());
-    }, [])
+    }, [project, parameter])
 
     if (!project) {
         console.log("project is undefined")

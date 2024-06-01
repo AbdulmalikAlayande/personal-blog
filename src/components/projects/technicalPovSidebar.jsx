@@ -6,6 +6,7 @@ const TechnicalPovSidebar = () => {
             <h2 className={"text-designColor"}>Table Of Contents</h2>
             <ul>
                 <li><a href={"#description"}>Description</a></li>
+                <li><a href={"#features"}>Features</a></li>
                 <li><a href={"#technologies-used"}>Technologies Used</a></li>
                 <li><a href={"#database"}>Database</a></li>
                 <li><a href={"#api"}>API</a></li>

@@ -21,6 +21,7 @@ import store2 from "./images/projects/store-2.svg";
 import store3 from "./images/projects/store-3.png";
 import testimonialOne from "./images/testmonial/testimonialOne.png";
 import testimonialTwo from "./images/testmonial/testimonialTwo.png";
+import testErd from "./images/projects/test-erd.png"
 import quote from "./images/testmonial/quote.png";
 import contactImg from "./images/contact/contactImg.png";
 
@@ -46,6 +47,7 @@ export {
     store1,
     store2,
     store3,
+    testErd,
     testimonialOne,
     testimonialTwo,
     quote,
