@@ -42,7 +42,7 @@ export const projects = [
             dbms: "MySQL",
             reason: "Chosen for its reliability and performance in handling complex queries and transactions.",
             schemaDesign: "Normalized schema design to optimize for read and write performance.",
-            erd: testErd
+            erd: "Not Available"
         },
         api: {
             endpoints: [
@@ -114,7 +114,7 @@ export const projects = [
             dbms: "MongoDB",
             reason: "Selected for its flexibility in handling unstructured data and ease of scalability.",
             schemaDesign: "Document-based schema to accommodate dynamic course content and student records.",
-            erd: testErd,
+            erd: "Not Available",
         },
         api: {
             endpoints: [
@@ -185,7 +185,7 @@ export const projects = [
             dbms: "PostgreSQL",
             reason: "Chosen for its advanced data integrity features and support for complex queries.",
             schemaDesign: "Relational schema design to ensure data integrity and efficient access.",
-            erd: "https://example.com/ehr-erd.jpg"
+            erd: "Not Available"
         },
         api: {
             endpoints: [
