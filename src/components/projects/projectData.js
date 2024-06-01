@@ -65,7 +65,7 @@ export const projects = [
             authentication: "JWT-based authentication to ensure secure access to the endpoints.",
         },
         testing: {
-            testFrameworks: ["JUnit", "Mockito", "Cypress"],
+            testFrameworks: ["JUnit", "Mockito", "Jest"],
             testCoverage: "Extensive unit and integration tests covering 90% of the codebase."
         },
         sourceCode: {
@@ -102,12 +102,12 @@ export const projects = [
             frontend: {
                 languagesAndFramework: ["JavaScript", "React.js"],
                 databaseAndCache: ["IndexedDB"],
-                cloudTools: ["AWS S3", "Netlify"]
+                cloudTools: ["Vercel"]
             },
             backend: {
-                languagesAndFramework: ["Node.js", "Express.js"],
-                databaseAndCache: ["MongoDB", "Redis"],
-                cloudTools: ["AWS Lambda", "AWS DynamoDB"]
+                languagesAndFramework: ["Java", "Springboot"],
+                databaseAndCache: ["PostgreSQL", "Redis"],
+                cloudTools: ["GCP"]
             }
         },
         database: {
@@ -137,7 +137,7 @@ export const projects = [
             authentication: "OAuth2.0 for secure authentication and authorization.",
         },
         testing: {
-            testFrameworks: ["Mocha", "Chai", "Jest"],
+            testFrameworks: ["Junit", "Mockito", "Jest"],
             testCoverage: "Comprehensive test suites with coverage reports indicating 85% of the codebase.",
         },
         sourceCode: {
@@ -171,14 +171,14 @@ export const projects = [
         ],
         technologies: {
             frontend: {
-                languagesAndFramework: ["TypeScript", "Angular"],
+                languagesAndFramework: ["TypeScript", "React.js"],
                 databaseAndCache: ["IndexedDB"],
-                cloudTools: ["Azure", "Firebase"]
+                cloudTools: ["Vercel", "Firebase"]
             },
             backend: {
-                languagesAndFramework: ["Python", "Django"],
+                languagesAndFramework: ["Java", "Springboot"],
                 databaseAndCache: ["PostgreSQL", "Memcached"],
-                cloudTools: ["Azure Functions", "Firebase"]
+                cloudTools: ["Heroku", "Firebase"]
             }
         },
         database: {
@@ -208,7 +208,7 @@ export const projects = [
             authentication: "Two-factor authentication (2FA) for enhanced security.",
         },
         testing: {
-            testFrameworks: ["PyTest", "Selenium"],
+            testFrameworks: ["PyTest"],
             testCoverage: "High coverage of critical functionalities with unit, integration, and end-to-end tests.",
         },
         sourceCode: {
@@ -246,13 +246,13 @@ export const projects = [
         ],
         technologies: {
             frontend: {
-                languagesAndFramework: ["JavaScript", "React.js"],
-                databaseAndCache: ["IndexedDB"],
-                cloudTools: ["Docker", "Netlify"]
+                languagesAndFramework: ["None"],
+                databaseAndCache: ["None"],
+                cloudTools: ["None"]
             },
             backend: {
                 languagesAndFramework: ["Python", "Django", "Django REST Framework"],
-                databaseAndCache: ["PostgreSQL", "Redis"],
+                databaseAndCache: ["PostgreSQL", "Redis", "Elastic Search"],
                 cloudTools: ["Docker", "Heroku"]
             }
         },
@@ -260,7 +260,7 @@ export const projects = [
             dbms: "PostgreSQL",
             reason: "Chosen for its robustness and support for complex queries.",
             schemaDesign: "Normalized schema design to ensure data integrity and performance.",
-            erd: testErd
+            erd: "Not Available"
         },
         api: {
             endpoints: [
@@ -283,13 +283,13 @@ export const projects = [
             authentication: "JWT-based authentication to ensure secure access to the endpoints.",
         },
         testing: {
-            testFrameworks: ["PyTest", "Selenium"],
+            testFrameworks: ["PyUnit"],
             testCoverage: "Extensive unit and integration tests covering 90% of the codebase."
         },
         sourceCode: {
             repository: {
-                backend: "https://github.com/AbdulmalikAlayande/blog-backend",
-                frontend: "https://github.com/AbdulmalikAlayande/blog-frontend",
+                backend: "https://github.com/AbdulmalikAlayande/bloggy",
+                frontend: "",
             }
         }
     },
@@ -324,21 +324,21 @@ export const projects = [
         ],
         technologies: {
             frontend: {
-                languagesAndFramework: ["JavaScript", "React.js"],
-                databaseAndCache: ["IndexedDB"],
-                cloudTools: ["Docker", "AWS"]
+                languagesAndFramework: ["None"],
+                databaseAndCache: ["None"],
+                cloudTools: ["None"]
             },
             backend: {
                 languagesAndFramework: ["Java", "Springboot"],
                 databaseAndCache: ["MySQL", "Redis"],
-                cloudTools: ["Docker", "AWS"]
+                cloudTools: ["Docker", "GCP", "Cloudinary"]
             }
         },
         database: {
             dbms: "MySQL",
             reason: "Chosen for its robust transaction support and reliability.",
             schemaDesign: "Normalized schema design to ensure data integrity and performance.",
-            erd: testErd
+            erd: "Not Available"
         },
         api: {
             endpoints: [
@@ -361,13 +361,13 @@ export const projects = [
             authentication: "JWT-based authentication to ensure secure access to the endpoints.",
         },
         testing: {
-            testFrameworks: ["JUnit", "Mockito", "Selenium"],
+            testFrameworks: ["JUnit", "Mockito"],
             testCoverage: "Extensive unit, integration, and end-to-end tests covering 95% of the codebase."
         },
         sourceCode: {
             repository: {
-                backend: "https://github.com/AbdulmalikAlayande/dating-app-backend",
-                frontend: "https://github.com/AbdulmalikAlayande/dating-app-frontend",
+                backend: "https://github.com/AbdulmalikAlayande/Promeescuous",
+                frontend: "",
             }
         }
     },
@@ -375,7 +375,7 @@ export const projects = [
         id: "ons",
         description: {
             title: "Online Store App",
-            des: "An e-commerce platform built using Python and Django, providing a seamless online shopping experience. The application supports product browsing, secure payment processing, order tracking, and customer reviews."
+            des: "An platform built using Python and Django that serves as a digital marketplace where users can browse, select, and purchase products remotely. It provides a convenient platform for users to explore a wide range of items, make purchases securely, and track orders seamlessly. providing a seamless online shopping experience. The application supports product browsing, secure payment processing, order tracking, and customer reviews."
         },
         features: [
             "User authentication and profile management",
@@ -401,21 +401,21 @@ export const projects = [
         ],
         technologies: {
             frontend: {
-                languagesAndFramework: ["JavaScript", "React.js"],
-                databaseAndCache: ["IndexedDB"],
-                cloudTools: ["Docker", "Netlify"]
+                languagesAndFramework: ["None"],
+                databaseAndCache: ["None"],
+                cloudTools: ["None"]
             },
             backend: {
                 languagesAndFramework: ["Python", "Django", "Django REST Framework"],
                 databaseAndCache: ["MySQL", "Redis"],
-                cloudTools: ["Docker", "AWS"]
+                cloudTools: ["Docker", "Heroku", "Elastic Search"]
             }
         },
         database: {
             dbms: "MySQL",
             reason: "Chosen for its robust transaction support and reliability.",
             schemaDesign: "Normalized schema design to ensure data integrity and performance.",
-            erd: testErd
+            erd: "Not Available"
         },
         api: {
             endpoints: [
@@ -443,8 +443,8 @@ export const projects = [
         },
         sourceCode: {
             repository: {
-                backend: "https://github.com/AbdulmalikAlayande/online-store-backend",
-                frontend: "https://github.com/AbdulmalikAlayande/online-store-frontend",
+                backend: "https://github.com/AbdulmalikAlayande/snap-shop",
+                frontend: "",
             }
         }
     }
