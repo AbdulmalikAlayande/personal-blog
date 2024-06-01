@@ -24,8 +24,8 @@ export const projects = [
             "Utilized Dijkstra's algorithm for route optimization and flight scheduling, enabling the system to calculate the most efficient routes and flight paths based on factors such as distance, time, and availability.",
             "Incorporated the Observer design pattern to implement event-driven architecture for handling flight status updates, allowing subscribed users to receive notifications and updates in real-time whenever there are changes to their booked flights or travel itineraries.",
             "Implemented the Factory Method design pattern for the creating flight-related objects and entities, like flights, bookings, and payment transactions, ensuring flexible and scalable object creation while adhering to the SOLID principles of object-oriented design.",
-            "Designed and implemented a database schema to efficiently store and manage flight details, user profiles, booking records, and payment transactions.",
-    ],
+            "Designed and implemented a database schema to efficiently store and manage flight details, user profiles, booking records, and payment transactions."
+        ],
         technologies: {
             frontend: {
                 languagesAndFramework: ["TypeScript", "React.js"],
@@ -213,8 +213,238 @@ export const projects = [
         },
         sourceCode: {
             repository: {
-                backend: "https://github.com/AbdulmalikAlayande/bola-air-backend",
-                frontend: "https://github.com/AbdulmalikAlayande/bola-air-frontend",
+                backend: "https://github.com/AbdulmalikAlayande/e-Reach-backend",
+                frontend: "https://github.com/AbdulmalikAlayande/e-Reach-frontend",
+            }
+        }
+    },
+    {
+        id: "blog",
+        description: {
+            title: "Blog Application",
+            des: "A feature-rich blogging platform built using Django and Django REST Framework, allowing users to create, publish, and manage blog posts. The application supports various functionalities such as content creation, tagging, categorization, and user engagement through comments and reviews."
+        },
+        features: [
+            "User authentication and profile management",
+            "Content creation and editing",
+            "Tagging and categorization",
+            "Comments and replies",
+            "Search and filtering",
+            "SEO-friendly URLs",
+            "Content moderation and review system",
+            "Social media sharing"
+        ],
+        achievements: [
+            "Designed and built a blog application using Django and Django REST Framework, enabling users to create, publish, and manage blog posts effectively.",
+            "Implemented content creation, tagging, and categorization features to allow bloggers to organize and manage their posts efficiently.",
+            "Utilized Django's admin interface to provide an intuitive backend dashboard for content creators, allowing them to publish, edit, and delete posts with ease.",
+            "Developed a commenting system to facilitate user engagement and interaction with content, including moderation, replies, and notifications.",
+            "Implemented input validation, data sanitization, HTTPS encryption, and protection against SQL injection vulnerabilities to ensure secure and reliable operations.",
+            "Integrated a search and filtering functionality to enhance user experience, allowing users to easily find relevant content.",
+            "Implemented a review system where users can rate and provide feedback on posts, increasing user interaction and content credibility.",
+            "Integrated social media sharing features to allow users to easily share blog posts across various social media platforms."
+        ],
+        technologies: {
+            frontend: {
+                languagesAndFramework: ["JavaScript", "React.js"],
+                databaseAndCache: ["IndexedDB"],
+                cloudTools: ["Docker", "Netlify"]
+            },
+            backend: {
+                languagesAndFramework: ["Python", "Django", "Django REST Framework"],
+                databaseAndCache: ["PostgreSQL", "Redis"],
+                cloudTools: ["Docker", "Heroku"]
+            }
+        },
+        database: {
+            dbms: "PostgreSQL",
+            reason: "Chosen for its robustness and support for complex queries.",
+            schemaDesign: "Normalized schema design to ensure data integrity and performance.",
+            erd: testErd
+        },
+        api: {
+            endpoints: [
+                {
+                    title: "Create Post",
+                    description: "Endpoint to create a new blog post.",
+                    method: "POST",
+                },
+                {
+                    title: "Get Posts",
+                    description: "Endpoint to retrieve all blog posts.",
+                    method: "GET",
+                },
+                {
+                    title: "Delete Post",
+                    description: "Endpoint to delete an existing blog post.",
+                    method: "DELETE",
+                },
+            ],
+            authentication: "JWT-based authentication to ensure secure access to the endpoints.",
+        },
+        testing: {
+            testFrameworks: ["PyTest", "Selenium"],
+            testCoverage: "Extensive unit and integration tests covering 90% of the codebase."
+        },
+        sourceCode: {
+            repository: {
+                backend: "https://github.com/AbdulmalikAlayande/blog-backend",
+                frontend: "https://github.com/AbdulmalikAlayande/blog-frontend",
+            }
+        }
+    },
+    {
+        id: "dap",
+        description: {
+            title: "Dating App",
+            des: "A modern dating application built using Java and Springboot, providing users with the ability to find and connect with potential partners. The app includes features such as user profiles, matchmaking algorithms, chat functionality, and various security measures to ensure a safe and enjoyable user experience."
+        },
+        features: [
+            "User registration and profile creation",
+            "Matchmaking algorithms",
+            "Real-time chat functionality",
+            "Profile verification",
+            "Location-based search",
+            "Advanced filtering and preferences",
+            "Notifications and alerts",
+            "Security measures to prevent harassment and fraud"
+        ],
+        achievements: [
+            "Developed a dating application using Java and Springboot, providing users with a platform to find and connect with potential partners.",
+            "Implemented sophisticated matchmaking algorithms to provide users with relevant and compatible matches based on their preferences and behaviors.",
+            "Integrated real-time chat functionality using WebSockets to enable instant communication between users.",
+            "Implemented profile verification processes to enhance user trust and safety, including ID verification and photo verification.",
+            "Developed location-based search features, allowing users to find matches in their vicinity.",
+            "Implemented advanced filtering and preference settings to provide users with a personalized and tailored matchmaking experience.",
+            "Integrated notifications and alerts to keep users updated on new matches, messages, and other important activities.",
+            "Employed robust security measures to prevent harassment and fraud, including user reporting, blocking, and moderation tools.",
+            "Integrated Redis for efficient session management and caching.",
+            "Utilized Docker for containerization and deployment, ensuring consistency across different environments.",
+            "Implemented microservices architecture to ensure scalability and maintainability of the application."
+        ],
+        technologies: {
+            frontend: {
+                languagesAndFramework: ["JavaScript", "React.js"],
+                databaseAndCache: ["IndexedDB"],
+                cloudTools: ["Docker", "AWS"]
+            },
+            backend: {
+                languagesAndFramework: ["Java", "Springboot"],
+                databaseAndCache: ["MySQL", "Redis"],
+                cloudTools: ["Docker", "AWS"]
+            }
+        },
+        database: {
+            dbms: "MySQL",
+            reason: "Chosen for its robust transaction support and reliability.",
+            schemaDesign: "Normalized schema design to ensure data integrity and performance.",
+            erd: testErd
+        },
+        api: {
+            endpoints: [
+                {
+                    title: "Create Profile",
+                    description: "Endpoint to create a new user profile.",
+                    method: "POST",
+                },
+                {
+                    title: "Get Matches",
+                    description: "Endpoint to retrieve potential matches based on user preferences.",
+                    method: "GET",
+                },
+                {
+                    title: "SendMessage",
+                    description: "Endpoint to send a message to another user.",
+                    method: "POST",
+                },
+            ],
+            authentication: "JWT-based authentication to ensure secure access to the endpoints.",
+        },
+        testing: {
+            testFrameworks: ["JUnit", "Mockito", "Selenium"],
+            testCoverage: "Extensive unit, integration, and end-to-end tests covering 95% of the codebase."
+        },
+        sourceCode: {
+            repository: {
+                backend: "https://github.com/AbdulmalikAlayande/dating-app-backend",
+                frontend: "https://github.com/AbdulmalikAlayande/dating-app-frontend",
+            }
+        }
+    },
+    {
+        id: "ons",
+        description: {
+            title: "Online Store App",
+            des: "An e-commerce platform built using Python and Django, providing a seamless online shopping experience. The application supports product browsing, secure payment processing, order tracking, and customer reviews."
+        },
+        features: [
+            "User authentication and profile management",
+            "Product browsing and search",
+            "Secure payment processing",
+            "Order tracking",
+            "Customer reviews and ratings",
+            "Shopping cart and checkout",
+            "Inventory management",
+            "Promotions and discount codes"
+        ],
+        achievements: [
+            "Designed and built an online store using Django and Django REST Framework, enabling users to browse, search, and purchase products securely.",
+            "Integrated PayStack payment gateway to facilitate seamless and secure online transactions.",
+            "Implemented recommendations, user reviews, and order tracking features to enhance the shopping experience and drive customer satisfaction.",
+            "Utilized Django's admin interface to provide an intuitive backend dashboard for managing products, orders, and customers.",
+            "Developed a robust shopping cart and checkout process, ensuring a smooth and secure transaction flow for users.",
+            "Implemented a comprehensive inventory management system to keep track of stock levels and automate restocking alerts.",
+            "Integrated Redis for efficient session management and caching to enhance application performance.",
+            "Utilized Docker for containerization and deployment, ensuring consistency across different environments.",
+            "Implemented promotional features such as discount codes and seasonal offers to boost sales and customer engagement.",
+            "Ensured the application adhered to best security practices, including input validation, data sanitization, HTTPS encryption, and protection against SQL injection vulnerabilities."
+        ],
+        technologies: {
+            frontend: {
+                languagesAndFramework: ["JavaScript", "React.js"],
+                databaseAndCache: ["IndexedDB"],
+                cloudTools: ["Docker", "Netlify"]
+            },
+            backend: {
+                languagesAndFramework: ["Python", "Django", "Django REST Framework"],
+                databaseAndCache: ["MySQL", "Redis"],
+                cloudTools: ["Docker", "AWS"]
+            }
+        },
+        database: {
+            dbms: "MySQL",
+            reason: "Chosen for its robust transaction support and reliability.",
+            schemaDesign: "Normalized schema design to ensure data integrity and performance.",
+            erd: testErd
+        },
+        api: {
+            endpoints: [
+                {
+                    title: "Create Order",
+                    description: "Endpoint to create a new order in the system.",
+                    method: "POST",
+                },
+                {
+                    title: "Get Products",
+                    description: "Endpoint to retrieve available products.",
+                    method: "GET",
+                },
+                {
+                    title: "Track Order",
+                    description: "Endpoint to track the status of an existing order.",
+                    method: "GET",
+                },
+            ],
+            authentication: "JWT-based authentication to ensure secure access to the endpoints.",
+        },
+        testing: {
+            testFrameworks: ["PyTest", "Selenium"],
+            testCoverage: "Extensive unit and integration tests covering 90% of the codebase."
+        },
+        sourceCode: {
+            repository: {
+                backend: "https://github.com/AbdulmalikAlayande/online-store-backend",
+                frontend: "https://github.com/AbdulmalikAlayande/online-store-frontend",
             }
         }
     }
