@@ -22,12 +22,10 @@ function ProjectDocumentation() {
     }, [project, parameter])
 
     if (!project) {
-        console.log("project is undefined")
         return <div>Loading...</div>
 
     }
     else if (project) {
-        console.log("project should be defined now")
         return (
             <div className={"flex flex-row justify-between w-full h-auto bg-bodyColor text-lightText px-4"}>
                 <TechnicalPovSidebar/>

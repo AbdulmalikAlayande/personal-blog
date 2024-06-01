@@ -9,7 +9,6 @@ import {
     store1, store2, store3,
 } from "../../assets/index";
 import ProjectsCard from './ProjectsCard';
-import { BsGithub } from "react-icons/bs";
 // import { FaGlobe } from "react-icons/fa";
 
 const Projects = () => {
@@ -26,24 +25,24 @@ const Projects = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-14">
         <ProjectsCard
-          title="ELECTRONIC HEALTH RECORD (EHR) SYSTEM"
+          title="ELECTRONIC HEALTH RECORD(EHR)"
           des="Led the developed of a comprehensive Electronic Health Record (EHR) System
           that provides real-time, patient-centered records accessible to authorized users.
           The system enhances care coordination and efficiency by enabling seamless
           information sharing among healthcare providers, laboratories, and medical facilities"
           images={[ehr1, ehr2, interoperability]}
           githubUrls={["https://github.com/AbdulmalikAlayande/e-Reach-frontend.git", "https://github.com/AbdulmalikAlayande/e-Reach-backend.git"]}
-          icons={[<BsGithub/>, <BsGithub/>]}
+          projectName={"ehr"}
         />
         <ProjectsCard
-          title="LEARNING MANAGEMENT SYSTEM (LMS)"
+          title="LEARNING MANAGEMENT SYSTEM"
           des="A learning management system (L.M.S), aimed at advancing UN Goal 8,
           fostering inclusive economic growth, full employment, and decent work.
           By emphasizing skills development and entrepreneurship, the project aimed to empower youth
           to contribute meaningfully to the economy and society."
           images={[lms1, lms2, lms3]}
           githubUrls={["https://github.com/Thrivefuse/thrivefuse-backend.git", "https://github.com/Thrivefuse/Thrivefuse.git"]}
-          icons={[<BsGithub/>, <BsGithub/>]}
+          projectName={"lms"}
         />
         <ProjectsCard
           title="A BLOGGING WEBSITE"
@@ -53,7 +52,7 @@ const Projects = () => {
           it serves as a platform for expressing ideas, and discovering interesting content"
           images={[blog1, blog2, blog3]}
           githubUrls={["https://github.com/AbdulmalikAlayande/bloggy.git"]}
-          icons={[<BsGithub/>]}
+          projectName={"blog"}
         />
         <ProjectsCard
           title="ONLINE STORE"
@@ -62,7 +61,7 @@ const Projects = () => {
           range of items, make purchases securely, and track orders seamlessly."
           images={[store1, store2, store3]}
           githubUrls={["https://github.com/AbdulmalikAlayande/snap-shop.git"]}
-          icons={[<BsGithub/>]}
+          projectName={"ons"}
         />
         <ProjectsCard
           title="Dating App"
@@ -71,7 +70,7 @@ const Projects = () => {
           and algorithm-based matching to connect users based on their preferences and interests."
           images={[dating1, dating2, dating3]}
           githubUrls={["https://github.com/AbdulmalikAlayande/promiscuous.git"]}
-          icons={[<BsGithub/>]}
+          projectName={"dap"}
         />
         <ProjectsCard
           title="AIRLINE RESERVATION SYSTEM"
@@ -80,7 +79,7 @@ const Projects = () => {
           simplicity and user satisfaction, this application streamlines the travel experience for customers."
           images={[ars1, ars2, ars3]}
           githubUrls={["https://github.com/AbdulmalikAlayande/bola-air-backend.git", "https://github.com/AbdulmalikAlayande/bola-air-frontend.git"]}
-          icons={[<BsGithub/>, <BsGithub/>]}/>
+          projectName={"ars"}/>
       </div>
     </section>
   );

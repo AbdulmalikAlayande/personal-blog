@@ -15,6 +15,17 @@ export const projects = [
             "Booking cancellation and modification",
             "Email notifications for booking confirmations and updates"
         ],
+        achievements: [
+            "Developed an airline reservation system designed to facilitate ticket reservation and flight bookings, allowing users to search, reserve tickets, and pay for flights efficiently.",
+            "Utilized Spring Security and OAuth 2.0 and JSON Web Tokens (JWT) authentication mechanisms for secure authentication and authorization, ensuring user data privacy and system integrity.",
+            "Integrated FlightAware API to retrieve real-time flight information, including schedules, and availability enhancing the accuracy and reliability of the reservation system.",
+            "Integrated PayStack payment gateway for secure and convenient payment processing, allowing users to easily complete transactions with various payment methods.",
+            "Implemented an in-app notification system using RabbitMQ as the message broker, enabling real-time communication of important updates and alerts to users regarding their flight reservations, booking confirmations, and schedule changes.",
+            "Utilized Dijkstra's algorithm for route optimization and flight scheduling, enabling the system to calculate the most efficient routes and flight paths based on factors such as distance, time, and availability.",
+            "Incorporated the Observer design pattern to implement event-driven architecture for handling flight status updates, allowing subscribed users to receive notifications and updates in real-time whenever there are changes to their booked flights or travel itineraries.",
+            "Implemented the Factory Method design pattern for the creating flight-related objects and entities, like flights, bookings, and payment transactions, ensuring flexible and scalable object creation while adhering to the SOLID principles of object-oriented design.",
+            "Designed and implemented a database schema to efficiently store and manage flight details, user profiles, booking records, and payment transactions.",
+    ],
         technologies: {
             frontend: {
                 languagesAndFramework: ["TypeScript", "React.js"],
@@ -78,6 +89,15 @@ export const projects = [
             "Discussion forums and messaging",
             "Progress tracking and reporting"
         ],
+        achievements: [
+            "Led a team of four engineers to develop a Learning Management Platform aimed at equipping citizens with valuable skills and fostering social protection initiatives.",
+            "Integrated Google Classroom API to streamline classroom administration and enhance collaboration between educators and learners, contributing to the platform's effectiveness in facilitating knowledge dissemination.",
+            "Implemented Live Session functionality using Google Meet API integration. to foster interaction between facilitators and learners.",
+            "Implemented Class Scheduling and Organization functionality leveraging the Google Calendar API, to facilitate effortless management and coordination of educational activities with precision and ease.",
+            "Developed the classroom resources management functionality, using Google Drive API, to allow users organize, store, and access to educational materials such as assignments, notes, and classwork with efficiency and convenience.",
+            "Implemented authentication and authorization mechanisms to ensure secure access to classroom resources, removing the risk of unauthorized access and data breaches.",
+            "Deployed the Learning Management Platform to Google Cloud Platform (GCP), utilizing its robust infrastructure to ensure scalability, reliability, and accessibility for users across the country.",
+        ],
         technologies: {
             frontend: {
                 languagesAndFramework: ["JavaScript", "React.js"],
@@ -140,6 +160,14 @@ export const projects = [
             "Secure messaging between providers and patients",
             "Prescription management",
             "Billing and insurance processing"
+        ],
+        achievements: [
+            "Led a team of six engineers in the development of an Electronic Health Record (EHR) system from scratch, ensuring compliance with HIPAA and HITECH regulations, increasing patient data accuracy and security, and streamlined patient data management to improve healthcare delivery.",
+            "Implemented key features of the EHR system, including: Patient management, Appointment scheduling, Medical records management, and Prescription management.",
+            "Led the integration of Interoperability standards such as HL7 (Health Level Seven) and FHIR (Fast Healthcare Interoperability Resources), to enable seamless data exchange between different healthcare systems.",
+            "Integrated Firebase Realtime Database for real-time patient medical logs and health records management.",
+            "Implemented Role-Based Access Control (RBAC) to ensure granular access control and maintain data confidentiality, allowing only authorized personnel to view and modify patient records based on their roles and permissions.",
+            "Employed robust encryption techniques and SSL/TLS transmission protocols to safeguard patient data during transmission over networks, ensuring compliance with GDPR (General Data Protection Regulation) and PHI (Protected Health Information) privacy and security standards.",
         ],
         technologies: {
             frontend: {

@@ -5,7 +5,7 @@ const ProjectTechnicalPov = ({project}) => {
 
     return (
         <div className={"w-[82%]"}>
-            <section className={"text-lg w-full py-10 border-b-[1px] mt-0 border-b-black flex flex-col gap-6"} id={"description"}>
+            <section className={"text-lg w-full py-10 border-b-[1px] mt-0 border-b-black flex flex-col gap-6"} id={"overview"}>
                 <a href={"#overview"}>
                     <h1 className={"text-4xl text-designColor"}>Overview</h1>
                 </a>
@@ -16,11 +16,11 @@ const ProjectTechnicalPov = ({project}) => {
                     {project.description.des}
                 </p>
             </section>
-            <section className={"w-full py-10 border-b-[1px] border-b-black flex flex-col justify-around gap-6"}>
+            <section className={"w-full py-10 border-b-[1px] border-b-black flex flex-col justify-around gap-6"} id={"features"}>
                 <a href={"#features"}>
                     <h1 className={"text-4xl text-designColor"}>Features</h1>
                 </a>
-                <ul className={"text-lg list-disc w-[50%] flex flex-col pl-10"}>
+                <ul className={"text-lg list-disc flex flex-col pl-10"}>
                     {
                         project.features.map((feature, index) => (
                             <li id={index}>{feature}</li>
@@ -28,7 +28,21 @@ const ProjectTechnicalPov = ({project}) => {
                     }
                 </ul>
             </section>
-            <section className={"w-full py-10 text-lg border-b-[1px] border-b-black flex flex-col justify-between gap-6"} id={"technologies used"}>
+            <section className={"w-full py-10 border-b-[1px] border-b-black flex flex-col justify-around gap-6"} id={"achievements"}>
+                <a href={"#achievements"}>
+                    <h1 className={"text-4xl text-designColor"}>Achievements</h1>
+                </a>
+                <ul className={"text-lg list-disc flex flex-col pl-10"}>
+                    {
+                        project.achievements.map((achievement, index) => (
+                            <li id={index}>{achievement}</li>
+                        ))
+                    }
+                </ul>
+            </section>
+            <section
+                className={"w-full py-10 text-lg border-b-[1px] border-b-black flex flex-col justify-between gap-6"}
+                id={"technologies-used"}>
                 <a className={"text-4xl text-designColor"} href={"#technologies-used"}>
                     <h3>Technologies Used</h3>
                 </a>
