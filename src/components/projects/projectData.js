@@ -649,448 +649,107 @@ export const projects = [
             },
             snippet: {
                 language: "Java",
-                code: "package org.ereach.inc.services.hospital;\n" +
-                    "\n" +
-                    "import com.cloudinary.Cloudinary;\n" +
-                    "import com.cloudinary.Uploader;\n" +
-                    "import com.fasterxml.jackson.databind.JsonNode;\n" +
-                    "import com.fasterxml.jackson.databind.ObjectMapper;\n" +
-                    "import com.github.fge.jsonpatch.JsonPatch;\n" +
-                    "import com.github.fge.jsonpatch.JsonPatchException;\n" +
-                    "import com.github.fge.jsonpatch.JsonPatchOperation;\n" +
-                    "import com.github.fge.jsonpatch.ReplaceOperation;\n" +
-                    "import lombok.AllArgsConstructor;\n" +
-                    "import lombok.extern.slf4j.Slf4j;\n" +
-                    "import org.ereach.inc.config.EReachConfig;\n" +
-                    "import org.ereach.inc.data.dtos.request.AddressCreationRequest;\n" +
-                    "import org.ereach.inc.data.dtos.request.AddressUpdateRequest;\n" +
-                    "import org.ereach.inc.data.dtos.request.CreateHospitalRequest;\n" +
-                    "import org.ereach.inc.data.dtos.request.UpdateHospitalRequest;\n" +
-                    "import org.ereach.inc.data.dtos.response.*;\n" +
-                    "import org.ereach.inc.data.dtos.response.entries.*;\n" +
-                    "import org.ereach.inc.data.models.Address;\n" +
-                    "import org.ereach.inc.data.models.entries.MedicalLog;\n" +
-                    "import org.ereach.inc.data.models.hospital.Hospital;\n" +
-                    "import org.ereach.inc.data.models.hospital.Record;\n" +
-                    "import org.ereach.inc.data.models.users.HospitalAdmin;\n" +
-                    "import org.ereach.inc.data.models.users.Practitioner;\n" +
-                    "import org.ereach.inc.data.repositories.hospital.EReachHospitalRepository;\n" +
-                    "import org.ereach.inc.data.repositories.users.HospitalAdminRepository;\n" +
-                    "import org.ereach.inc.exceptions.EReachBaseException;\n" +
-                    "import org.ereach.inc.exceptions.EReachUncheckedBaseException;\n" +
-                    "import org.ereach.inc.exceptions.FieldInvalidException;\n" +
-                    "import org.ereach.inc.exceptions.RequestInvalidException;\n" +
-                    "import org.ereach.inc.services.AddressService;\n" +
-                    "import org.ereach.inc.services.notifications.EReachNotificationRequest;\n" +
-                    "import org.ereach.inc.services.notifications.MailService;\n" +
-                    "import org.ereach.inc.services.validators.EmailValidator;\n" +
-                    "import org.ereach.inc.utilities.JWTUtil;\n" +
-                    "import org.jetbrains.annotations.NotNull;\n" +
-                    "import org.modelmapper.ModelMapper;\n" +
-                    "import org.springframework.stereotype.Service;\n" +
-                    "import org.springframework.web.multipart.MultipartFile;\n" +
-                    "\n" +
-                    "import java.io.IOException;\n" +
-                    "import java.util.*;\n" +
-                    "import java.util.concurrent.atomic.AtomicReference;\n" +
-                    "import java.util.stream.Collectors;\n" +
-                    "\n" +
-                    "import static org.apache.catalina.util.Introspection.getDeclaredFields;\n" +
-                    "import static org.ereach.inc.data.models.AccountStatus.ACTIVE;\n" +
-                    "import static org.ereach.inc.data.models.AccountStatus.PENDING;\n" +
-                    "import static org.ereach.inc.data.models.Role.HOSPITAL;\n" +
-                    "import static org.ereach.inc.data.models.Role.HOSPITAL_ADMIN;\n" +
-                    "import static org.ereach.inc.utilities.AppUtil.doReplace;\n" +
-                    "import static org.ereach.inc.utilities.AppUtil.filterEmptyField;\n" +
-                    "import static org.ereach.inc.utilities.Constants.*;\n" +
-                    "import static org.ereach.inc.utilities.JWTUtil.extractEmailFrom;\n" +
-                    "\n" +
-                    "@Service\n" +
-                    "@AllArgsConstructor\n" +
-                    "@Slf4j\n" +
-                    "public class EReachHospitalService implements HospitalService {\n" +
-                    "\n" +
-                    "\n" +
-                    "\tprivate EReachHospitalRepository hospitalRepository;\n" +
-                    "\tprivate ModelMapper modelMapper;\n" +
-                    "\tprivate HospitalAdminRepository hospitalAdminRepository;\n" +
-                    "\tprivate MailService mailService;\n" +
-                    "\tprivate EmailValidator emailValidator;\n" +
-                    "\tprivate AddressService addressService;\n" +
-                    "\tprivate final EReachConfig config;\n" +
-                    "\tprivate ObjectMapper objectMapper;\n" +
-                    "\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic HospitalResponse registerHospital(@NotNull CreateHospitalRequest hospitalRequest) throws FieldInvalidException, RequestInvalidException {\n" +
-                    "\t\temailValidator.validateEmail(hospitalRequest.getHospitalEmail());\n" +
-                    "\t\tverifyHefamaaId(hospitalRequest.getHEFAMAA_ID());\n" +
-                    "\n" +
-                    "\t\tAddressCreationRequest mappedAddress = modelMapper.map(hospitalRequest, AddressCreationRequest.class);\n" +
-                    "\t\tAddressResponse saveAddressResponse = addressService.saveAddress(mappedAddress);\n" +
-                    "\t\tAddress savedAddress = modelMapper.map(saveAddressResponse, Address.class);\n" +
-                    "\n" +
-                    "\t\tHospital mappedHospital = modelMapper.map(hospitalRequest, Hospital.class);\n" +
-                    "\t\tmappedHospital.setUserRole(HOSPITAL);\n" +
-                    "\t\tmappedHospital.setAccountStatus(PENDING);\n" +
-                    "\t\tmappedHospital.setAddress(savedAddress);\n" +
-                    "\t\tmappedHospital.setLogsCreated(new HashSet<>());\n" +
-                    "\t\tmappedHospital.setAdmins(new HashSet<>());\n" +
-                    "\t\tmappedHospital.setPractitioners(new HashSet<>());\n" +
-                    "\t\tmappedHospital.setRecords(new HashSet<>());\n" +
-                    "\n" +
-                    "\t\tHospitalAdmin admin = modelMapper.map(hospitalRequest, HospitalAdmin.class);\n" +
-                    "\t\tadmin.setAdminRole(HOSPITAL_ADMIN);\n" +
-                    "\t\tadmin.setActive(true);\n" +
-                    "\t\tadmin.setAccountStatus(PENDING);\n" +
-                    "\t\tHospitalAdmin savedAdmin = hospitalAdminRepository.save(admin);\n" +
-                    "\n" +
-                    "\t\tmappedHospital.getAdmins().add(savedAdmin);\n" +
-                    "\t\tlog.info(\"mapped hospital is => {}\", mappedHospital);\n" +
-                    "\t\tHospital savedHospital = hospitalRepository.save(mappedHospital);\n" +
-                    "\n" +
-                    "//\t\tHospital temporarilySavedHospital = inMemoryDatabase.temporarySave(mappedHospital);\n" +
-                    "\t\tmailService.sendMail(buildNotificationRequest(savedHospital));\n" +
-                    "\t\treturn modelMapper.map(savedHospital, HospitalResponse.class);\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate EReachNotificationRequest buildNotificationRequest(Hospital hospital) {\n" +
-                    "\t\treturn EReachNotificationRequest.builder()\n" +
-                    "\t\t\t\t.firstName(hospital.getHospitalName())\n" +
-                    "\t\t\t\t.templatePath(HOSPITAL_ACCOUNT_ACTIVATION_MAIL_PATH)\n" +
-                    "\t\t\t\t.email(hospital.getHospitalEmail())\n" +
-                    "\t\t\t\t.role(hospital.getUserRole().toString())\n" +
-                    "\t\t\t\t.url(hospitalAccountActivationUrl(hospital.getHospitalEmail(), hospital.getUserRole().toString(), hospital.getHospitalName(), hospital.getHospitalName()))\n" +
-                    "\t\t\t\t.build();\n" +
-                    "\t}\n" +
-                    "\tprivate void verifyHefamaaId(String hefamaaId) {\n" +
-                    "\n" +
-                    "\t}\n" +
-                    "\tprivate String hospitalAccountActivationUrl(String email, String role, String firstName, String lastName){\n" +
-                    "\t\treturn ACTIVATE_HOSPITAL_ACCOUNT + JWTUtil.generateAccountActivationUrl(email, role, firstName, lastName,config.getAppJWTSecret());\n" +
-                    "\t}\n" +
-                    "\tpublic HospitalResponse saveHospitalPermanently(String token) throws EReachBaseException {\n" +
-                    "\t\tif (Objects.equals(token, config.getTestToken()))\n" +
-                    "\t\t\treturn activateTestAccount();\n" +
-                    "\t\telse if (JWTUtil.isValidToken(token, config.getAppJWTSecret()))\n" +
-                    "\t\t\treturn activateAccount(token);\n" +
-                    "\t\telse throw new EReachBaseException(\"Token \"+token+\" to activate hospital admin account was Invalid or has expired\");\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic List<GetHospitalAdminResponse> findAllAdminByHefamaaId(String hospitalHefamaaId) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalHefamaaId);\n" +
-                    "\t\treturn foundHospital.map(hospital -> hospital.getAdmins()\n" +
-                    "\t\t\t\t\t\t.stream()\n" +
-                    "\t\t\t\t\t\t.map(admin -> modelMapper.map(admin, GetHospitalAdminResponse.class))\n" +
-                    "\t\t\t\t\t\t.toList())\n" +
-                    "\t\t\t\t.orElseThrow(()->new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_ID_DOES_NOT_EXIST, hospitalHefamaaId)));\n" +
-                    "\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic List<GetHospitalAdminResponse> findAllAdminByHospitalEmail(String hospitalEmail) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalEmail);\n" +
-                    "\t\treturn foundHospital.map(hospital -> hospital.getAdmins()\n" +
-                    "\t\t\t\t\t\t.stream()\n" +
-                    "\t\t\t\t\t\t.map(admin -> modelMapper.map(admin, GetHospitalAdminResponse.class))\n" +
-                    "\t\t\t\t\t\t.toList())\n" +
-                    "\t\t\t\t.orElseThrow(()->new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, hospitalEmail)));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic List<GetPractitionerResponse> getAllPractitioners(String hospitalEmail) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalEmail);\n" +
-                    "\t\treturn foundHospital.map(hospital -> hospital.getPractitioners()\n" +
-                    "\t\t\t\t\t\t.stream()\n" +
-                    "\t\t\t\t\t\t.map(practitioner -> modelMapper.map(practitioner, GetPractitionerResponse.class))\n" +
-                    "\t\t\t\t\t\t.toList())\n" +
-                    "\t\t\t\t.orElseThrow(()->new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, hospitalEmail)));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic List<GetRecordResponse> getAllRecordsCreated(String hospitalEmail) throws EReachBaseException {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalEmail);\n" +
-                    "\t\tif (foundHospital.isPresent()){\n" +
-                    "\t\t\tSet<Record> hospitalRecords = foundHospital.get().getRecords();\n" +
-                    "\t\t\treturn hospitalRecords.stream()\n" +
-                    "\t\t\t\t\t.map(record -> {\n" +
-                    "\t\t\t\t\t\tSet<MedicalLog> logsCreated = foundHospital.get().getLogsCreated();\n" +
-                    "\t\t\t\t\t\tList<MedicalLogResponse> logsResponses = logsCreated.stream().map(log -> {\n" +
-                    "\t\t\t\t\t\t\tMedicalLogResponse response = new MedicalLogResponse();\n" +
-                    "\t\t\t\t\t\t\tresponse.setDateCreated(log.getDateCreated());\n" +
-                    "\t\t\t\t\t\t\tresponse.setHospitalEmail(hospitalEmail);\n" +
-                    "\t\t\t\t\t\t\tresponse.setHospitalName(foundHospital.get().getHospitalName());\n" +
-                    "\t\t\t\t\t\t\tresponse.setTimeCreated(log.getTimeCreated());\n" +
-                    "\t\t\t\t\t\t\tresponse.setPrescriptionsResponseDTO(mapList(log.getPrescriptions(), PrescriptionsResponseDTO.class));\n" +
-                    "\t\t\t\t\t\t\tresponse.setTestResponseDTO(mapList(log.getTests(), TestResponseDTO.class));\n" +
-                    "\t\t\t\t\t\t\tresponse.setVitalsResponseDTO(modelMapper.map(log.getVitals(), VitalsResponseDTO.class));\n" +
-                    "\t\t\t\t\t\t\tresponse.setDoctorReportResponseDTO(modelMapper.map(log.getDoctorsReport(), DoctorReportResponseDTO.class));\n" +
-                    "\t\t\t\t\t\t\treturn response;\n" +
-                    "\t\t\t\t\t\t}).toList();\n" +
-                    "\t\t\t\t\t\tGetRecordResponse records = modelMapper.map(record, GetRecordResponse.class);\n" +
-                    "\t\t\t\t\t\trecords.setMedicalLogResponses(logsResponses);\n" +
-                    "\t\t\t\t\t\trecords.setMessage(\"Record found\");\n" +
-                    "\t\t\t\t\t\treturn records;\n" +
-                    "\t\t\t\t\t})\n" +
-                    "\t\t\t\t\t.toList();\n" +
-                    "\t\t}\n" +
-                    "\t\tthrow new EReachBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, hospitalEmail));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t<S, T> List<T> mapList(List<S> source, Class<T> targetClass) {\n" +
-                    "\t\treturn source.stream()\n" +
-                    "\t\t\t\t.map(element -> modelMapper.map(element, targetClass))\n" +
-                    "\t\t\t\t.collect(Collectors.toList());\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate HospitalResponse activateAccount(String token){\n" +
-                    "\t\tString email = extractEmailFrom(token);\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(email);\n" +
-                    "\t\tHospital activeHospital = foundHospital.map(hospital -> {\n" +
-                    "\t\t\tif (!hospital.isActive() || hospital.getAccountStatus() == PENDING) {\n" +
-                    "\t\t\t\thospital.setActive(true);\n" +
-                    "\t\t\t\thospital.setAccountStatus(ACTIVE);\n" +
-                    "\t\t\t\tOptional<HospitalAdmin> foundAdmin = hospital.getAdmins().stream().findFirst();\n" +
-                    "\t\t\t\tfoundAdmin.ifPresent(admin -> {\n" +
-                    "\t\t\t\t\tadmin.setAccountStatus(ACTIVE);\n" +
-                    "\t\t\t\t\tadmin.setActive(true);\n" +
-                    "\t\t\t\t\thospitalAdminRepository.save(admin);\n" +
-                    "\n" +
-                    "\t\t\t\t});\n" +
-                    "\t\t\t}\n" +
-                    "\t\t\treturn hospital;\n" +
-                    "\t\t}).orElseThrow(() -> new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, email)));\n" +
-                    "\t\treturn modelMapper.map(activeHospital, HospitalResponse.class);\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate EReachNotificationRequest buildNotificationRequest(HospitalAdmin admin) {\n" +
-                    "\t\treturn EReachNotificationRequest.builder()\n" +
-                    "\t\t\t\t.firstName(admin.getAdminFirstName())\n" +
-                    "\t\t\t\t.lastName(admin.getAdminLastName())\n" +
-                    "\t\t\t\t.templatePath(HOSPITAL_ACCOUNT_ACTIVATION_MAIL_PATH)\n" +
-                    "\t\t\t\t.email(admin.getAdminEmail())\n" +
-                    "\t\t\t\t.role(admin.getAdminRole().toString())\n" +
-                    "\t\t\t\t.url(urlForHospitalAdmin(\n" +
-                    "\t\t\t\t\t\tadmin.getAdminEmail(),\n" +
-                    "\t\t\t\t\t\tadmin.getAdminRole().toString(),\n" +
-                    "\t\t\t\t\t\tadmin.getAdminFirstName(),\n" +
-                    "\t\t\t\t\t\tadmin.getAdminLastName()))\n" +
-                    "\t\t\t\t.build();\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate String urlForHospitalAdmin(String email, String role, String firstName, String lastName){\n" +
-                    "\t\treturn ACTIVATE_HOSPITAL_ADMIN_ACCOUNT + JWTUtil.generateAccountActivationUrl(email, role, firstName, lastName,config.getAppJWTSecret());\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate HospitalResponse activateTestAccount() {\n" +
-                    "\t\treturn HospitalResponse.builder()\n" +
-                    "\t\t\t\t.hospitalName(TEST_HOSPITAL_NAME)\n" +
-                    "\t\t\t\t.hospitalEmail(TEST_HOSPITAL_MAIL)\n" +
-                    "\t\t\t\t.build();\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic HospitalResponse editHospitalProfile(UpdateHospitalRequest hospitalRequest) {\n" +
-                    "\t\tString logoUrl = scanForFile(hospitalRequest.getLogo());\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalRequest.getHospitalEmail());\n" +
-                    "\t\tAtomicReference<HospitalResponse> atomicReference = new AtomicReference<>();\n" +
-                    "\t\tfoundHospital.ifPresentOrElse(hospital -> {\n" +
-                    "\t\t\tJsonPatch updatePatch = buildHospitalUpdatePatch(hospitalRequest);\n" +
-                    "\t\t\ttry {\n" +
-                    "\t\t\t\tHospitalResponse response = applyPatchTo(hospital, updatePatch);\n" +
-                    "\t\t\t\tresponse.setLogoCloudUrl(logoUrl);\n" +
-                    "\t\t\t\tatomicReference.set(response);\n" +
-                    "\t\t\t} catch (JsonPatchException e) {\n" +
-                    "\t\t\t\tthrow new EReachUncheckedBaseException(e);\n" +
-                    "\t\t\t}\n" +
-                    "\t\t}, ()->{});\n" +
-                    "\t\treturn atomicReference.get();\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate String scanForFile(MultipartFile logo) {\n" +
-                    "\t\tif (!logo.isEmpty())\n" +
-                    "\t\t\treturn pushToCloud(logo);\n" +
-                    "\t\treturn null;\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate String pushToCloud(MultipartFile logo) {\n" +
-                    "\t\tCloudinary cloudinary = new Cloudinary();\n" +
-                    "\t\tUploader uploader = cloudinary.uploader();\n" +
-                    "\t\tMap<String, Object> map = new HashMap<>();\n" +
-                    "\t\tmap.put(\"public_id\",\"e-Reach/hospital/media/\"+logo.getName());\n" +
-                    "\t\tmap.put(\"api_key\",config.getCloudApiKey());\n" +
-                    "\t\tmap.put(\"api_secret\",config.getCloudApiSecret());\n" +
-                    "\t\tmap.put(\"cloud_name\",config.getCloudApiName());\n" +
-                    "\t\tmap.put(\"secure\",true);\n" +
-                    "\t\tmap.put(\"resource_type\", \"auto\");\n" +
-                    "\t\ttry{\n" +
-                    "\t\t\tMap<?,?> response = uploader.upload(logo.getBytes(), map);\n" +
-                    "\t\t\treturn response.get(\"url\").toString();\n" +
-                    "\t\t}catch (IOException exception){\n" +
-                    "\t\t\tthrow new EReachUncheckedBaseException(exception+\" File upload failed\");\n" +
-                    "\t\t}\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate HospitalResponse applyPatchTo(Hospital hospital, JsonPatch updatePatch) throws JsonPatchException {\n" +
-                    "\t\tJsonNode convertedAddress = objectMapper.convertValue(hospital, JsonNode.class);\n" +
-                    "\t\tJsonNode updatedNode = updatePatch.apply(convertedAddress);\n" +
-                    "\t\thospital = objectMapper.convertValue(updatedNode, Hospital.class);\n" +
-                    "\t\thospitalRepository.save(hospital);\n" +
-                    "\t\treturn modelMapper.map(hospital, HospitalResponse.class) ;\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\tprivate JsonPatch buildHospitalUpdatePatch(UpdateHospitalRequest hospitalRequest) {\n" +
-                    "\t\tList<ReplaceOperation> operations = Arrays.stream(getDeclaredFields(AddressUpdateRequest.class))\n" +
-                    "\t\t\t\t.filter(field -> filterEmptyField(hospitalRequest, field))\n" +
-                    "\t\t\t\t.map(field -> doReplace(hospitalRequest, field))\n" +
-                    "\t\t\t\t.toList();\n" +
-                    "\t\tList<JsonPatchOperation> patchOperations = new ArrayList<>(operations);\n" +
-                    "\t\treturn new JsonPatch(patchOperations);\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic HospitalResponse viewHospitalProfileByEmailOrHefamaaId(String email, String hefamaaId) {\n" +
-                    "\t\treturn null;\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic List<HospitalResponse> getAllHospitals() {\n" +
-                    "\t\treturn hospitalRepository.findAll()\n" +
-                    "\t\t\t\t.stream()\n" +
-                    "\t\t\t\t.map(hospital -> modelMapper.map(hospital, HospitalResponse.class))\n" +
-                    "\t\t\t\t.toList();\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic HospitalResponse findHospitalById(String id) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findById(id);\n" +
-                    "\t\tAtomicReference<HospitalResponse> atomicReference = new AtomicReference<>();\n" +
-                    "\t\treturn foundHospital.map(hospital -> {\n" +
-                    "\t\t\tHospitalResponse mappedResponse = modelMapper.map(foundHospital, HospitalResponse.class);\n" +
-                    "\t\t\tatomicReference.set(mappedResponse);\n" +
-                    "\t\t\treturn atomicReference.get();\n" +
-                    "\t\t}).orElseThrow(()-> new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_ID_DOES_NOT_EXIST,id)));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic HospitalResponse findHospitalByEmail(String email) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(email);\n" +
-                    "\t\tAtomicReference<HospitalResponse> atomicReference = new AtomicReference<>();\n" +
-                    "\t\treturn foundHospital.map(hospital -> {\n" +
-                    "\t\t\tHospitalResponse mappedResponse = modelMapper.map(foundHospital, HospitalResponse.class);\n" +
-                    "\t\t\tatomicReference.set(mappedResponse);\n" +
-                    "\t\t\treturn atomicReference.get();\n" +
-                    "\t\t}).orElseThrow(()-> new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST,email)));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic HospitalResponse findHospitalByHefamaaId(String hefamaa_Id) {\n" +
-                    "\t\treturn null;\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic String removeHospital(String mail) throws RequestInvalidException {\n" +
-                    "\t\tif (hospitalRepository.existsByHospitalEmail(mail))\n" +
-                    "\t\t\thospitalRepository.deleteByHospitalEmail(mail);\n" +
-                    "\t\tthrow new RequestInvalidException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, mail));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic MedicalLogResponse addToLog(String hospitalEmail, MedicalLog medicalLog) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalEmail);\n" +
-                    "\t\treturn foundHospital.map(hospital->{\n" +
-                    "\t\t\thospital.getLogsCreated().add(medicalLog);\n" +
-                    "\t\t\tHospital savedHospital = hospitalRepository.save(hospital);\n" +
-                    "\t\t\treturn MedicalLogResponse.builder()\n" +
-                    "\t\t\t\t\t.hospitalEmail(savedHospital.getHospitalEmail())\n" +
-                    "\t\t\t\t\t.hospitalName(savedHospital.getHospitalName())\n" +
-                    "\t\t\t\t\t.build();\n" +
-                    "\t\t}).orElseThrow(()->new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, hospitalEmail)));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic void addToRecords(String hospitalEmail, Record savedRecord) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalEmail);\n" +
-                    "\t\tfoundHospital.map(hospital->{\n" +
-                    "\t\t\thospital.getRecords().add(savedRecord);\n" +
-                    "\t\t\thospitalRepository.save(hospital);\n" +
-                    "\t\t\treturn hospital;\n" +
-                    "\t\t}).orElseThrow(()->new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, hospitalEmail)));\n" +
-                    "\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic void addPractitioners(String hospitalEmail, Practitioner savedPractitioner) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalEmail);\n" +
-                    "\t\tfoundHospital.map(hospital->{\n" +
-                    "\t\t\thospital.getPractitioners().add(savedPractitioner);\n" +
-                    "\t\t\thospitalRepository.save(hospital);\n" +
-                    "\t\t\treturn hospital;\n" +
-                    "\t\t}).orElseThrow(()->new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, hospitalEmail)));\n" +
-                    "\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic List<GetRecordResponse> viewPatientsRecords(String hospitalEmail) {\n" +
-                    "\t\tOptional<Hospital> foundHospital = hospitalRepository.findByHospitalEmail(hospitalEmail);\n" +
-                    "\t\treturn foundHospital.map(hospital -> {\n" +
-                    "\t\t\tSet<Record> foundRecords = hospital.getRecords();\n" +
-                    "            return foundRecords.stream().map(record -> {\n" +
-                    "\t\t\t\tGetRecordResponse recordResponse = new GetRecordResponse();\n" +
-                    "\t\t\t\trecordResponse.setPatientIdentificationNumber(record.getPatientIdentificationNumber());\n" +
-                    "\t\t\t\trecordResponse.setDateCreated(record.getDateCreated());\n" +
-                    "\t\t\t\trecordResponse.setLastTimeUpdated(record.getLastTimeUpdated());\n" +
-                    "\t\t\t\trecordResponse.setMessage(\"Record found\");\n" +
-                    "\n" +
-                    "\n" +
-                    "\t\t\t\tList<MedicalLogResponse> allLogs = record.getMedicalLogs().stream().map(medicalLog -> {\n" +
-                    "\t\t\t\t\tList<TestResponseDTO> tests = mapList(medicalLog.getTests(), TestResponseDTO.class);\n" +
-                    "\t\t\t\t\tList<PrescriptionsResponseDTO> prescriptions = mapList(medicalLog.getPrescriptions(), PrescriptionsResponseDTO.class);\n" +
-                    "\t\t\t\t\tDoctorReportResponseDTO doctorReport = modelMapper.map(medicalLog.getDoctorsReport(), DoctorReportResponseDTO.class);\n" +
-                    "\t\t\t\t\tVitalsResponseDTO vitals = modelMapper.map(medicalLog.getVitals(), VitalsResponseDTO.class);\n" +
-                    "\n" +
-                    "\t\t\t\t\tMedicalLogResponse medicalLogResponse = new MedicalLogResponse();\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setTestResponseDTO(tests);\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setVitalsResponseDTO(vitals);\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setPrescriptionsResponseDTO(prescriptions);\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setDoctorReportResponseDTO(doctorReport);\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setHospitalEmail(medicalLog.getHospitalEmail());\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setDateCreated(medicalLog.getDateCreated());\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setPatientIdentificationNumber(medicalLog.getPatientIdentificationNumber());\n" +
-                    "\t\t\t\t\tmedicalLogResponse.setTimeCreated(medicalLog.getTimeCreated());\n" +
-                    "\t\t\t\t\treturn medicalLogResponse;\n" +
-                    "\t\t\t\t}).toList();\n" +
-                    "\t\t\t\trecordResponse.setMedicalLogResponses(allLogs);\n" +
-                    "\t\t\t\treturn recordResponse;\n" +
-                    "\t\t\t}).toList();\n" +
-                    "\t\t}).orElseThrow(()-> new EReachUncheckedBaseException(String.format(HOSPITAL_WITH_EMAIL_DOES_NOT_EXIST, hospitalEmail)));\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "\t@Override\n" +
-                    "\tpublic List<MedicalLogResponse> viewPatientsMedicalLogs(String hospitalEmail) {\n" +
-                    "\t\thospitalRepository.getReferenceById(hospitalEmail);\n" +
-                    "\n" +
-                    "\t\treturn null;\n" +
-                    "\t}\n" +
-                    "}\n" +
-                    "//Hospital hospital = inMemoryDatabase.retrieveHospitalFromInMemory(email);\n" +
-                    "//\t\tOptional<HospitalAdmin> foundAdmin = hospital.getAdmins().stream().findFirst();\n" +
-                    "//\t\tAtomicReference<Hospital> savedHospitalReference = new AtomicReference<>();\n" +
-                    "//\t\tfoundAdmin.ifPresent(admin -> {\n" +
-                    "//\t\t\ttry {\n" +
-                    "//\t\t\t\tadmin.setAdminRole(HOSPITAL_ADMIN);\n" +
-                    "//\t\t\t\tinMemoryDatabase.temporarySave(admin);\n" +
-                    "//\t\t\t\thospital.setAdmins(new HashSet<>());\n" +
-                    "//\t\t\t\tHospital savedHospital = hospitalRepository.save(hospital);\n" +
-                    "//\t\t\t\tsavedHospitalReference.set(savedHospital);\n" +
-                    "//\t\t\t\tinMemoryDatabase.addHospitalToSavedHospitals(admin.getAdminEmail(), hospital);\n" +
-                    "//\t\t\t\tmailService.sendMail(buildNotificationRequest(admin));\n" +
-                    "//\t\t\t} catch (RequestInvalidException e) {\n" +
-                    "//\t\t\t\tthrow new EReachUncheckedBaseException(e);\n" +
-                    "//\t\t\t}\n" +
-                    "//\t\t});\n" +
-                    "//\t\treturn modelMapper.map(savedHospitalReference.get(), HospitalResponse.class);\n"
+                code: `${"package org.ereach.inc.services.hospital;\n" +
+                "\n"}import com.cloudinary.Cloudinary;
+import com.cloudinary.Uploader;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
+import com.github.fge.jsonpatch.JsonPatchOperation;
+import com.github.fge.jsonpatch.ReplaceOperation;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.ereach.inc.config.EReachConfig;
+import org.ereach.inc.data.dtos.request.AddressCreationRequest;
+import org.ereach.inc.data.dtos.request.AddressUpdateRequest;
+import org.ereach.inc.data.dtos.request.CreateHospitalRequest;
+import org.ereach.inc.data.dtos.request.UpdateHospitalRequest;
+import org.ereach.inc.data.dtos.response.*;
+import org.ereach.inc.data.dtos.response.entries.*;
+import org.ereach.inc.data.models.Address;
+import org.ereach.inc.data.models.entries.MedicalLog;
+import org.ereach.inc.data.models.hospital.Hospital;
+import org.ereach.inc.data.models.hospital.Record;
+import org.ereach.inc.data.models.users.HospitalAdmin;
+import org.ereach.inc.data.models.users.Practitioner;
+import org.ereach.inc.data.repositories.hospital.EReachHospitalRepository;
+import org.ereach.inc.data.repositories.users.HospitalAdminRepository;
+import org.ereach.inc.exceptions.EReachBaseException;
+import org.ereach.inc.exceptions.EReachUncheckedBaseException;
+import org.ereach.inc.exceptions.FieldInvalidException;
+import org.ereach.inc.exceptions.RequestInvalidException;
+import org.ereach.inc.services.AddressService;
+import org.ereach.inc.services.notifications.EReachNotificationRequest;
+import org.ereach.inc.services.notifications.MailService;
+import org.ereach.inc.services.validators.EmailValidator;
+import org.ereach.inc.utilities.JWTUtil;
+import org.jetbrains.annotations.NotNull;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+
+import static org.apache.catalina.util.Introspection.getDeclaredFields;
+import static org.ereach.inc.data.models.AccountStatus.ACTIVE;
+import static org.ereach.inc.data.models.AccountStatus.PENDING;
+import static org.ereach.inc.data.models.Role.HOSPITAL;
+import static org.ereach.inc.data.models.Role.HOSPITAL_ADMIN;
+import static org.ereach.inc.utilities.AppUtil.doReplace;
+import static org.ereach.inc.utilities.AppUtil.filterEmptyField;
+import static org.ereach.inc.utilities.Constants.*;
+import static org.ereach.inc.utilities.JWTUtil.extractEmailFrom;
+
+@Service
+@AllArgsConstructor
+@Slf4j
+public class EReachHospitalService implements HospitalService {
+
+
+\tprivate EReachHospitalRepository hospitalRepository;
+\tprivate ModelMapper modelMapper;
+\tprivate HospitalAdminRepository hospitalAdminRepository;
+\tprivate MailService mailService;
+\tprivate EmailValidator emailValidator;
+\tprivate AddressService addressService;
+\tprivate final EReachConfig config;
+\tprivate ObjectMapper objectMapper;
+
+
+\t@Override
+\tpublic HospitalResponse registerHospital(@NotNull CreateHospitalRequest hospitalRequest) throws FieldInvalidException, RequestInvalidException {
+\t\temailValidator.validateEmail(hospitalRequest.getHospitalEmail());
+\t\tverifyHefamaaId(hospitalRequest.getHEFAMAA_ID());
+
+\t\tAddressCreationRequest mappedAddress = modelMapper.map(hospitalRequest, AddressCreationRequest.class);
+\t\tAddressResponse saveAddressResponse = addressService.saveAddress(mappedAddress);
+\t\tAddress savedAddress = modelMapper.map(saveAddressResponse, Address.class);
+
+\t\tHospital mappedHospital = modelMapper.map(hospitalRequest, Hospital.class);
+\t\tmappedHospital.setUserRole(HOSPITAL);
+\t\tmappedHospital.setAccountStatus(PENDING);
+\t\tmappedHospital.setAddress(savedAddress);
+\t\tmappedHospital.setLogsCreated(new HashSet<>());
+\t\tmappedHospital.setAdmins(new HashSet<>());
+\t\tmappedHospital.setPractitioners(new HashSet<>());
+\t\tmappedHospital.setRecords(new HashSet<>());
+
+\t\tHospitalAdmin admin = modelMapper.map(hospitalRequest, HospitalAdmin.class);
+\t\tadmin.setAdminRole(HOSPITAL_ADMIN);
+\t\tadmin.setActive(true);
+\t\tadmin.setAccountStatus(PENDING);
+\t\tHospitalAdmin savedAdmin = hospitalAdminRepository.save(admin);
+
+\t\tmappedHospital.getAdmins().add(savedAdmin);
+\t\tlog.info("mapped hospital is => {}", mappedHospital);
+\t\tHospital savedHospital = hospitalRepository.save(mappedHospital);
+
+//\t\tHospital temporarilySavedHospital = inMemoryDatabase.temporarySave(mappedHospital);
+`
             }
         }
     },
@@ -1259,237 +918,107 @@ export const projects = [
             },
             snippet: {
                 language: "Python",
-                code: "from django_elasticsearch_dsl_drf.filter_backends import (\n" +
-                    "    SearchFilterBackend,\n" +
-                    "    FilteringFilterBackend,\n" +
-                    "    OrderingFilterBackend,\n" +
-                    "    CompoundSearchFilterBackend,\n" +
-                    ")\n" +
-                    "from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet\n" +
-                    "from rest_framework import status\n" +
-                    "from rest_framework.request import Request\n" +
-                    "from rest_framework.response import Response\n" +
-                    "from rest_framework.generics import GenericAPIView\n" +
-                    "from rest_framework.mixins import (\n" +
-                    "    CreateModelMixin,\n" +
-                    "    ListModelMixin,\n" +
-                    "    RetrieveModelMixin,\n" +
-                    "    DestroyModelMixin,\n" +
-                    "    UpdateModelMixin,\n" +
-                    ")\n" +
-                    "\n" +
-                    "from auths.models import Blogger\n" +
-                    "from auths.permissions import IsAuthenticatedUser\n" +
-                    "from blog.document import PostsDocument\n" +
-                    "from blog.models import Media, Post, Comment, Like\n" +
-                    "from blog.querysets import ALL_POSTS_QUERYSET\n" +
-                    "from blog.serializers import (\n" +
-                    "    PostSerializer,\n" +
-                    "    PostCreateSerializer,\n" +
-                    "    CommentSerializer,\n" +
-                    "    LikeSerializer,\n" +
-                    "    PostDocumentSerializer,\n" +
-                    ")\n" +
-                    "from blog.filters import PostFilter\n" +
-                    "from commons.utils import get_object_or_404\n" +
-                    "\n" +
-                    "\n" +
-                    "# region Base Classes\n" +
-                    "class PostAPIView(GenericAPIView):\n" +
-                    "    queryset = ALL_POSTS_QUERYSET\n" +
-                    "    serializer_class = PostSerializer\n" +
-                    "    filter_class = PostFilter\n" +
-                    "    # permission_classes = [IsAuthenticatedUser]\n" +
-                    "    search_fields = [\n" +
-                    "        \"title\",\n" +
-                    "        \"blogger__username\",\n" +
-                    "        \"blogger__email\",\n" +
-                    "        \"id\",\n" +
-                    "        \"uuid\",\n" +
-                    "        \"created_at\",\n" +
-                    "    ]\n" +
-                    "    ordering_fields = [\"title\", \"created_at\"]\n" +
-                    "    ordering = [\"-created_at\"]\n" +
-                    "\n" +
-                    "\n" +
-                    "# endregion\n" +
-                    "# region Post - Public(Not User Endpoint)\n" +
-                    "\n" +
-                    "\n" +
-                    "class PostCreateView(CreateModelMixin, PostAPIView):\n" +
-                    "    serializer_class = PostCreateSerializer\n" +
-                    "\n" +
-                    "    def post(self, request, *args, **kwargs):\n" +
-                    "        try:\n" +
-                    "            serializer = self.get_serializer(data=request.data)\n" +
-                    "            serializer.is_valid(raise_exception=True)\n" +
-                    "            blogger: Blogger = get_object_or_404(\n" +
-                    "                Blogger, email=request.data.get(\"blogger_email\")\n" +
-                    "            )\n" +
-                    "            data: dict = serializer.validated_data\n" +
-                    "            data[\"blogger\"] = blogger\n" +
-                    "            data[\"status\"] = Post.Status.PUBLISHED\n" +
-                    "            post: Post = self.perform_create(data=data)\n" +
-                    "            headers = self.get_success_headers(serializer.data)\n" +
-                    "            response_serializer = PostSerializer(post)\n" +
-                    "            return Response(\n" +
-                    "                data={\n" +
-                    "                    \"message\": \"Post created successfully\",\n" +
-                    "                    **response_serializer.data,\n" +
-                    "                },\n" +
-                    "                status=status.HTTP_201_CREATED,\n" +
-                    "                headers=headers,\n" +
-                    "            )\n" +
-                    "        except Exception as exception:\n" +
-                    "            return Response(\n" +
-                    "                data={\"error\": str(exception)}, status=status.HTTP_400_BAD_REQUEST\n" +
-                    "            )\n" +
-                    "\n" +
-                    "    def perform_create(self, data: dict) -> Post:\n" +
-                    "        unwanted_data_keys = [\"blogger_email\", \"media_urls\"]\n" +
-                    "        post: Post = Post.objects.create(\n" +
-                    "            **{\n" +
-                    "                key: value\n" +
-                    "                for key, value in data.items()\n" +
-                    "                if key not in unwanted_data_keys\n" +
-                    "            }\n" +
-                    "        )\n" +
-                    "        media_urls = data.get(\"media_urls\")\n" +
-                    "        medias = [Media(cloud_url=url, post=post) for url in media_urls]\n" +
-                    "        Media.objects.bulk_create(medias)\n" +
-                    "        return post\n" +
-                    "\n" +
-                    "\n" +
-                    "class PostsListView(ListModelMixin, PostAPIView):\n" +
-                    "\n" +
-                    "    def get(self, request, *args, **kwargs):\n" +
-                    "        return super().list(request, *args, **kwargs)\n" +
-                    "\n" +
-                    "\n" +
-                    "class PostRetrieveView(RetrieveModelMixin, PostAPIView):\n" +
-                    "\n" +
-                    "    def get(self, request, *args, **kwargs):\n" +
-                    "        post: Post = self.get_queryset().filter(uuid=kwargs.get(\"bid\")).get()\n" +
-                    "        serializer: PostSerializer = self.get_serializer(post)\n" +
-                    "        return Response(data=serializer.data, status=status.HTTP_200_OK)\n" +
-                    "\n" +
-                    "\n" +
-                    "class AddCommentView(CreateModelMixin, PostAPIView):\n" +
-                    "    serializer_class = CommentSerializer\n" +
-                    "\n" +
-                    "    def post(self, request, *args, **kwargs):\n" +
-                    "        serializer: CommentSerializer = self.get_serializer(data=request.data)\n" +
-                    "        serializer.is_valid(raise_exception=True)\n" +
-                    "        post: Post = ALL_POSTS_QUERYSET.get(uuid=kwargs.get(\"pid\"))\n" +
-                    "        author: Blogger = get_object_or_404(\n" +
-                    "            Blogger, username=serializer.validated_data.get(\"author\").get(\"username\")\n" +
-                    "        )\n" +
-                    "        comment: Comment = Comment.objects.create(\n" +
-                    "            body=serializer.validated_data.get(\"body\"), post=post, author=author\n" +
-                    "        )\n" +
-                    "        response_serializer = self.get_serializer(comment)\n" +
-                    "        headers = self.get_success_headers(serializer.data)\n" +
-                    "        return Response(\n" +
-                    "            response_serializer.data, status=status.HTTP_201_CREATED, headers=headers\n" +
-                    "        )\n" +
-                    "\n" +
-                    "\n" +
-                    "class AddLikeView(CreateModelMixin, PostAPIView):\n" +
-                    "    serializer_class = LikeSerializer\n" +
-                    "\n" +
-                    "    def post(self, request, *args, **kwargs):\n" +
-                    "        serializer: LikeSerializer = self.get_serializer(data=request.data)\n" +
-                    "        serializer.is_valid(raise_exception=True)\n" +
-                    "        post: Post = ALL_POSTS_QUERYSET.get(uuid=kwargs.get(\"pid\"))\n" +
-                    "        post.number_of_likes = post.number_of_likes + 1\n" +
-                    "        post.save()\n" +
-                    "        creator: Blogger = get_object_or_404(\n" +
-                    "            Blogger, username=serializer.validated_data.get(\"creator\").get(\"username\")\n" +
-                    "        )\n" +
-                    "        like: Like = Like.objects.create(creator=creator, post=post)\n" +
-                    "        response_serializer = self.get_serializer(like)\n" +
-                    "        headers = self.get_success_headers(serializer.data)\n" +
-                    "        return Response(\n" +
-                    "            response_serializer.data, status=status.HTTP_201_CREATED, headers=headers\n" +
-                    "        )\n" +
-                    "\n" +
-                    "\n" +
-                    "# endregion\n" +
-                    "# region - Post - Private(User Specific Endpoints)\n" +
-                    "\n" +
-                    "\"\"\"\n" +
-                    "TODO: Endpoints To Add\n" +
-                    "1. Delete Post\n" +
-                    "2. Create Draft Post\n" +
-                    "3. Update Post\n" +
-                    "4. Get Blogger Specific Draft Post\n" +
-                    "\"\"\"\n" +
-                    "\n" +
-                    "\n" +
-                    "class BloggerPostsListView(ListModelMixin, PostAPIView):\n" +
-                    "\n" +
-                    "    def get(self, request: Request, *args, **kwargs):\n" +
-                    "        blogger: Blogger = get_object_or_404(Blogger, uuid=kwargs.get(\"bid\"))\n" +
-                    "        posts = self.get_queryset().filter(blogger=blogger)\n" +
-                    "        response_data = [self.get_serializer(post).data for post in posts]\n" +
-                    "        return Response(data=response_data, status=status.HTTP_200_OK)\n" +
-                    "\n" +
-                    "\n" +
-                    "class BloggerPostRetrieveView(RetrieveModelMixin, PostAPIView):\n" +
-                    "\n" +
-                    "    def get(self, request, *args, **kwargs):\n" +
-                    "        blogger: Blogger = get_object_or_404(Blogger, uuid=kwargs.get(\"bid\"))\n" +
-                    "        post: Post = (\n" +
-                    "            self.get_queryset().filter(blogger=blogger).get(uuid=kwargs.get(\"pid\"))\n" +
-                    "        )\n" +
-                    "        serializer: PostSerializer = self.get_serializer(post)\n" +
-                    "        return Response(data=serializer.data, status=status.HTTP_200_OK)\n" +
-                    "\n" +
-                    "\n" +
-                    "class BloggerPostDestroyView(DestroyModelMixin, PostAPIView):\n" +
-                    "\n" +
-                    "    def delete(self, request, *args, **kwargs):\n" +
-                    "        return super().destroy(request, *args, **kwargs)\n" +
-                    "\n" +
-                    "    def get_object(self):\n" +
-                    "        pid = self.kwargs.get(\"pid\")\n" +
-                    "        return get_object_or_404(Post, uuid=pid)\n" +
-                    "\n" +
-                    "\n" +
-                    "class BloggerPostUpdateView(UpdateModelMixin, PostAPIView):\n" +
-                    "\n" +
-                    "    def put(self, request, *args, **kwargs):\n" +
-                    "        return super().update(request, *args, **kwargs)\n" +
-                    "\n" +
-                    "    def patch(self, request, *args, **kwargs):\n" +
-                    "        return super().partial_update(request, *args, **kwargs)\n" +
-                    "\n" +
-                    "\n" +
-                    "class PostDocumentView(DocumentViewSet):\n" +
-                    "    document = PostsDocument\n" +
-                    "    serializer_class = PostDocumentSerializer\n" +
-                    "    filter_backends = [\n" +
-                    "        SearchFilterBackend,\n" +
-                    "        FilteringFilterBackend,\n" +
-                    "        OrderingFilterBackend,\n" +
-                    "        CompoundSearchFilterBackend,\n" +
-                    "    ]\n" +
-                    "    search_fields = [\n" +
-                    "        \"title\",\n" +
-                    "        \"blogger__username\",\n" +
-                    "        \"blogger__email\",\n" +
-                    "        \"uuid\",\n" +
-                    "        \"created_at\",\n" +
-                    "    ]\n" +
-                    "    filter_fields = {\n" +
-                    "        \"title\": \"title\",\n" +
-                    "        \"blogger__username\": \"blogger__username\",\n" +
-                    "        \"blogger__email\": \"blogger__email\",\n" +
-                    "        \"uuid\": \"uuid\",\n" +
-                    "        \"created_at\": \"created_at\",\n" +
-                    "    }\n" +
-                    "    ordering_fields = [\"title\", \"created_at\"]\n" +
-                    "    multi_match_search_fields = [\"title\", \"blogger__username\", \"blogger__email\", \"body\"]\n"
+                code: `${"from django_elasticsearch_dsl_drf.filter_backends import (\n" +
+                "    SearchFilterBackend,\n"}    FilteringFilterBackend,
+    OrderingFilterBackend,
+    CompoundSearchFilterBackend,
+)
+from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
+from rest_framework import status
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    DestroyModelMixin,
+    UpdateModelMixin,
+)
+
+from auths.models import Blogger
+from auths.permissions import IsAuthenticatedUser
+from blog.document import PostsDocument
+from blog.models import Media, Post, Comment, Like
+from blog.querysets import ALL_POSTS_QUERYSET
+from blog.serializers import (
+    PostSerializer,
+    PostCreateSerializer,
+    CommentSerializer,
+    LikeSerializer,
+    PostDocumentSerializer,
+)
+from blog.filters import PostFilter
+from commons.utils import get_object_or_404
+
+
+# region Base Classes
+class PostAPIView(GenericAPIView):
+    queryset = ALL_POSTS_QUERYSET
+    serializer_class = PostSerializer
+    filter_class = PostFilter
+    # permission_classes = [IsAuthenticatedUser]
+    search_fields = [
+        "title",
+        "blogger__username",
+        "blogger__email",
+        "id",
+        "uuid",
+        "created_at",
+    ]
+    ordering_fields = ["title", "created_at"]
+    ordering = ["-created_at"]
+
+
+# endregion
+# region Post - Public(Not User Endpoint)
+
+
+class PostCreateView(CreateModelMixin, PostAPIView):
+    serializer_class = PostCreateSerializer
+
+    def post(self, request, *args, **kwargs):
+        try:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            blogger: Blogger = get_object_or_404(
+                Blogger, email=request.data.get("blogger_email")
+            )
+            data: dict = serializer.validated_data
+            data["blogger"] = blogger
+            data["status"] = Post.Status.PUBLISHED
+            post: Post = self.perform_create(data=data)
+            headers = self.get_success_headers(serializer.data)
+            response_serializer = PostSerializer(post)
+            return Response(
+                data={
+                    "message": "Post created successfully",
+                    **response_serializer.data,
+                },
+                status=status.HTTP_201_CREATED,
+                headers=headers,
+            )
+        except Exception as exception:
+            return Response(
+                data={"error": str(exception)}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+    def perform_create(self, data: dict) -> Post:
+        unwanted_data_keys = ["blogger_email", "media_urls"]
+        post: Post = Post.objects.create(
+            **{
+                key: value
+                for key, value in data.items()
+                if key not in unwanted_data_keys
+            }
+        )
+        media_urls = data.get("media_urls")
+        medias = [Media(cloud_url=url, post=post) for url in media_urls]
+        Media.objects.bulk_create(medias)
+        return post
+
+
+`
             }
         }
     },

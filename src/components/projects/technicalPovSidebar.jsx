@@ -17,7 +17,7 @@ const TechnicalPovSidebar = () => {
         <>
             { !isOpen ?
                 (
-                    <div className={"h-[100vh] w-10% flex flex-col justify-between gap-6 p-4 xl:px-12 xl:py-5 rounded-lg shadow-shadowOne"}>
+                    <div className={"h-[full] w-10% flex flex-col justify-between gap-6 p-4 xl:px-12 xl:py-5 rounded-lg shadow-shadowOne"}>
                         <a href={"#overview"} className={"w-full text-lg relative hover:text-designColor duration-300 group cursor-pointer"}>
                             <MdDescription size={30}/>
                         </a>
