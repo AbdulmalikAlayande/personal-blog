@@ -1,10 +1,11 @@
 import React from 'react';
 import {Icon} from "@iconify/react";
+import CodeSnippet from "./codeSnippet";
 
 const ProjectTechnicalPov = ({project}) => {
 
     return (
-        <div className={"w-[82%]"}>
+        <div className={"w-[75%]"}>
             <section className={"text-lg w-full py-10 border-b-[1px] mt-0 border-b-black flex flex-col gap-6"}
                      id={"overview"}>
                 <a className={"flex items-center"} href={"#overview"}>
@@ -221,6 +222,10 @@ const ProjectTechnicalPov = ({project}) => {
                                   className={"text-lg w-10 h-10 rounded-full bg-black inline-flex justify-center items-center text-gray-400 hover:text-designColor duration-300 cursor-pointer"}/>
                         </a>
                     </div>
+                </div>
+                <div className={"h-[35%] flex flex-col justify-between gap-4"}>
+                    <p>Snippet</p>
+                    <CodeSnippet code={project.sourceCode.snippet.code} language={project.sourceCode.snippet.language} />
                 </div>
             </section>
 

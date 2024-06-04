@@ -5,7 +5,8 @@ import {
     SiSpring, SiSpringboot, SiDjango, SiJavascript,
     SiTypescript, SiMysql, SiPostgresql, SiPostman,
     SiMongodb, SiRedis, SiRabbitmq, SiGooglecloud,
-    SiMicrosoftazure, SiHeroku, SiElasticsearch, SiNumpy, SiPandas
+    SiMicrosoftazure, SiHeroku, SiElasticsearch,
+    SiNumpy, SiPandas, SiApachekafka, SiVercel,
 } from "react-icons/si";
 import TextTitle from "../layouts/TextTitle";
 
@@ -171,6 +172,18 @@ const Tools = () => {
                             <SiElasticsearch size={30} />
                         </span>
                         <p>Elastic Search</p>
+                    </span>
+                    <span className="flex flex-col items-center gap-2">
+                        <span className="bannerIcon">
+                            <SiApachekafka size={30}/>
+                        </span>
+                        <p>Kafka</p>
+                    </span>
+                    <span className="flex flex-col items-center gap-2">
+                        <span className="bannerIcon">
+                            <SiVercel size={30} />
+                        </span>
+                        <p>Vercel</p>
                     </span>
                 </div>
             </section>

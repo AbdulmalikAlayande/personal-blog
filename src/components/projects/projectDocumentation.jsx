@@ -27,7 +27,7 @@ function ProjectDocumentation() {
     }
     else if (project) {
         return (
-            <div className={"flex flex-row justify-between w-full h-auto bg-bodyColor text-lightText px-4"}>
+            <div className={"w-full h-auto flex flex-row justify-between bg-bodyColor text-lightText px-4"}>
                 <TechnicalPovSidebar/>
                 <ProjectTechnicalPov project={project}/>
             </div>
