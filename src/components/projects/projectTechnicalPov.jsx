@@ -5,7 +5,7 @@ import CodeSnippet from "./codeSnippet";
 const ProjectTechnicalPov = ({project}) => {
 
     return (
-        <div className={"w-[75%]"}>
+        <div className={"w-[85%]"}>
             <section className={"text-lg w-full py-10 border-b-[1px] mt-0 border-b-black flex flex-col gap-6"}
                      id={"overview"}>
                 <a className={"flex items-center"} href={"#overview"}>
