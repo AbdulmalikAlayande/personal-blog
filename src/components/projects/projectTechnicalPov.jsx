@@ -5,8 +5,8 @@ import CodeSnippet from "./codeSnippet";
 const ProjectTechnicalPov = ({project}) => {
 
     return (
-        <div className={"w-[85%]"}>
-            <section className={"text-lg w-full py-10 border-b-[1px] mt-0 border-b-black flex flex-col gap-6"}
+        <div className={"box-border lgl:w-[85%]"}>
+            <div className={"flex flex-col text-lg py-10 border-b-[1px] border-b-black gap-6"}
                      id={"overview"}>
                 <a className={"flex items-center"} href={"#overview"}>
                     <span className={"text-4xl text-designColor"}>Overview</span>
@@ -15,11 +15,11 @@ const ProjectTechnicalPov = ({project}) => {
                 <h3 className={"text-designColor"} id={"Title"}>
                     {project.description.title}
                 </h3>
-                <p id={"description"}>
+                <p id={"description"} className={"font-bodyFont leading-6 tracking-wide break-words"}>
                     {project.description.des}
                 </p>
-            </section>
-            <section className={"w-full py-10 border-b-[1px] border-b-black flex flex-col justify-around gap-6"}
+            </div>
+            <section className={"lgl:w-full py-10 border-b-[1px] border-b-black flex flex-col justify-around gap-6"}
                      id={"features"}>
                 <a className={"flex items-center"} href={"#features"}>
                     <span className={"text-4xl text-designColor"}>Features</span>

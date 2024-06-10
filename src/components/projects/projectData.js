@@ -3,7 +3,10 @@ export const projects = [
         id: "ars",
         description: {
             title: "Airline Reservation System",
-            des: "A comprehensive system designed to handle airline bookings, manage customer data, and streamline flight scheduling and management. This project involved the creation of a user-friendly web interface for customers to book flights, an admin panel for airline staff to manage flights and reservations, and an API to handle all backend processes securely and efficiently."
+            des: `A comprehensive system designed to handle airline bookings, manage customer data, 
+            and streamline flight scheduling and management. This project involved the creation of a 
+            user-friendly web interface for customers to book flights, an admin panel for airline staff 
+            to manage flights and reservations, and an API to handle all backend processes securely and efficiently.`
         },
         features: [
             "User registration and authentication",
@@ -244,7 +247,12 @@ export const projects = [
         id: "lms",
         description: {
             title: "Learning Management System",
-            des: "A robust platform designed to facilitate online learning, manage courses, track student progress, and provide educational resources. The system supports a wide range of educational activities, including course creation, student enrollment, assignment submission, and grading. It provides an interactive learning environment with features like forums, quizzes, and real-time feedback."
+            des: `
+            A robust platform designed to facilitate online learning, manage courses, track student progress, 
+            and provide educational resources. The system supports a wide range of educational activities, 
+            including course creation, student enrollment, assignment submission, and grading. 
+            It provides an interactive learning environment with features like forums, quizzes, and real-time feedback.
+            `
         },
         features: [
             "Course creation and management",

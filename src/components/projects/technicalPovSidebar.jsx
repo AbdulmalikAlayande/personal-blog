@@ -18,7 +18,7 @@ const TechnicalPovSidebar = () => {
 
     return (
         <>
-            <div className={`flex flex-col gap-6 p-4 xl:px-5 xl:py-5 rounded-lg shadow-shadowOne border-solid ${isOpen ? "translate-x-0" : "translate-x-0"} ease-in-out duration-300`}>
+            <div className={`flex xs:flex-col gap-6 p-4 xl:px-5 xl:py-5 rounded-lg shadow-shadowOne border-solid ${isOpen ? "translate-x-0" : "translate-x-0"} ease-in-out duration-300`}>
                 <button onClick={toggleSidebar} className={"text-designColor"}>
                     <GiHamburgerMenu size={30} className={"text-designColor"}/>
                 </button>
