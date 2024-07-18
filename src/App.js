@@ -7,7 +7,7 @@ import FooterBottom from "./components/footer/FooterBottom";
 import Navbar from "./components/navbar/navbar";
 import Projects from "./components/projects/Projects";
 import Resume from "./components/resume/resume";
-import Testimonial from "./components/testimonial/testimonial";
+// import Testimonial from "./components/testimonial/testimonial";
 import Tools from "./components/tools/tools";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProjectDocumentation from "./components/projects/projectDocumentation";
